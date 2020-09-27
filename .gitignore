@@ -1,0 +1,14 @@
+/venv
+.idea
+docs/ppt
+/backup
+/data
+__pycache__
+*.pyc
+config.ini
+write_config.py
+/pyviz/image
+/pydb
+/pydap
+
+
