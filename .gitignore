@@ -1,8 +1,7 @@
 /venv
 .idea
-docs/ppt
+datamidware/docs/ppt
 /backup
-/data
 __pycache__
 *.pyc
 config.ini
