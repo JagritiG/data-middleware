@@ -1,13 +1,13 @@
 /venv
 .idea
-datamidware/docs/ppt
+datamidware/docs/ppt/
 /backup
 __pycache__
 *.pyc
 config.ini
 write_config.py
 /pyviz/image
-datamidware/pydb
-datamidware/pydp
+datamidware/pydb/
+datamidware/pydp/
 
 
