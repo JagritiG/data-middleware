@@ -1,6 +1,6 @@
 import unittest
 
-from dataware.pyalgo import sort
+from datamidware.pyalgo import sort
 
 
 class TestMergeSort(unittest.TestCase):

@@ -6,7 +6,7 @@ This middleware allows direct interaction with a database and perform SQL querie
 
 Package Structure & Installation:
 --------------------------------------------------------------------------------------------------------
-    dataware/                                     Top-level package
+    datamidware/                                     Top-level package
             __init__.py
             pyalgo/
                  __init__.py
@@ -58,7 +58,7 @@ Modules:
         db_type: database type (mysql, nosql), str
         tb_name: name of the table where data will be stored
 
-    Import statement: from dataware.pydm import file2db
+    Import statement: from datamidware.pydm import file2db
 
 
 
@@ -76,7 +76,7 @@ Modules:
             db_name: database name from where data is exported
             tb_name: name of the table from where data will be exported
 
-    Import statement: from dataware.pydm import db2file
+    Import statement: from datamidware.pydm import db2file
 
 
 
@@ -90,7 +90,7 @@ Modules:
             password: password
             db_name: database name to be created
 
-    Import statement: from dataware.pydm import create_mysql_db
+    Import statement: from datamidware.pydm import create_mysql_db
 
 
 
@@ -110,7 +110,7 @@ Modules:
                        in the existing table, if not exists, create new table and import
                        data.
 
-    Import statement: from dataware.pydm import csv2mysql
+    Import statement: from datamidware.pydm import csv2mysql
 
 
     5. json2mysql.json2mysql(host, user, password, filename, db_name, tb_name, key=None) :
@@ -131,7 +131,7 @@ Modules:
                            data.
             key: json key name to create mysql table
 
-    Import statement: from dataware.pydm import json2mysql
+    Import statement: from datamidware.pydm import json2mysql
 
 
     6. mysql2csv.mysql2csv(host, user, password, file_path, db_name, tb_name) :
@@ -146,7 +146,7 @@ Modules:
             db_name: name of the database from where data will be exported
             tb_name: name of the table from where data will be exported
 
-    Import statement: from dataware.pydm import mysql2csv
+    Import statement: from datamidware.pydm import mysql2csv
 
 
     . class mysql_query.MySQLDatabase() :
@@ -204,7 +204,7 @@ Modules:
 Configuration file & Unittest:
 ----------------------------------------------------------------------------------------------
  # To test all the modules, run following unittest command
- from the top-level directory "dataware":
+ from the top-level directory
 
     python3 -m unittest tests/test_pydm.py
 
@@ -212,7 +212,7 @@ Note: To successfully run the test, config.ini file needs to be updated
 
 To write config.ini file, follow the below steps:
 
--> go to ./dataware/settings
+-> go to settings
 -> update write_config.py with database connection credentials, for e.g.,
 
 (for MYSQL database connection)

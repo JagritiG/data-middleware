@@ -4,7 +4,7 @@ from loguru import logger
 import time
 from configparser import ConfigParser
 
-from dataware.pydm import (
+from datamidware.pydm import (
     file2db,
     csv2mysql,
     json2mysql,
@@ -14,7 +14,7 @@ from dataware.pydm import (
 
 # Read config.ini file
 config_object = ConfigParser()
-config_object.read('./dataware/settings/config.ini')
+config_object.read('./datamidware/settings/config.ini')
 mysql_cred = config_object["MYSQL"]
 
 

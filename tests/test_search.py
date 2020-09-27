@@ -1,6 +1,6 @@
 import unittest
 
-from dataware.pyalgo import search
+from datamidware.pyalgo import search
 
 
 class TestSearchAlgorithm(unittest.TestCase):

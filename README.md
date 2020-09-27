@@ -1,8 +1,8 @@
-Dataware: Data Middleware
+Datamidware: Data Middleware
 ----------------------------------------------------
 
 
-    dataware/
+    datamidware/
             pyalgo/
 
                 Python algorithm modules
