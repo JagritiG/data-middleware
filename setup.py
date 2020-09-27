@@ -12,11 +12,11 @@ from os import path
 here = path.abspath(path.dirname(__file__))
 
 setuptools.setup(
-    name="dataware",
-    version="0.0.1",
+    name="datamidware",
+    version="0.0.2",
     description="Data Middleware",
     long_description=open('README.md').read(),
-    # long_description_content_type="markdown",
+    long_description_content_type="text/markdown",
 
     # Author details
     author="Jagriti Goswami",

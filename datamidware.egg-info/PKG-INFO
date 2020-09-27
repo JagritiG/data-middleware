@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: datamidware
+Version: 0.0.2
+Summary: Data Middleware
+Home-page: https://github.com/JagritiG/dataware
+Author: Jagriti Goswami
+Author-email: jagritigoswami84@gmail.com
+License: MIT
+Description: Datamidware: Data Middleware
+        ----------------------------------------------------
+        
+        
+            datamidware/
+                    pyalgo/
+        
+                        Python algorithm modules
+        
+                    pydp/
+        
+                        Python data processing modules
+        
+                    pydb/
+        
+                        Python database interface modules
+                    pyviz/
+        
+                        Python data visualization modules
+                    pydm/
+        
+                        Python data middleware
+        
+                    docs/
+                            Document files
+        
+                    tests/
+                            All test modules and test data
+        
+                    settings/
+        
+                            Installation and setup modules
+                            Config files
+        
+        
+        
+        
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
