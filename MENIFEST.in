@@ -6,3 +6,9 @@ include LICENSE.txt
 
 # Include the data files
 recursive-include data *
+
+# Include
+include docs/*.txt
+include docs/*.pdf
+include requirements.txt
+include requirements_test.txt

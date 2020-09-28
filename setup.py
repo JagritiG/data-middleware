@@ -30,6 +30,13 @@ setuptools.setup(
     license='MIT',
 
     packages=setuptools.find_packages(),
+    install_requires=["Pillow==7.2.0", "PyMySQL==0.10.0",
+                      "SQLAlchemy==1.3.19", "loguru==0.5.2",
+                      "matplotlib==3.3.1", "numpy==1.19.1",
+                      "orca==1.5.3", "pandas==1.1.1",
+                      "plotly==4.9.0", "requests==2.24.0",
+                      "scikit-learn==0.23.2", "scipy==1.5.2",
+                      "seaborn==0.10.1", "click==7.1.2"],
     classifiers=[
         # Indicate who your project is intended for
         "Intended Audience :: Developers",
@@ -41,5 +48,5 @@ setuptools.setup(
         # Specify the Python versions you support here.
         "Programming Language :: Python :: 3.7",
     ],
-    # python_requires='>=3',
+    include_package_data=True,
 )

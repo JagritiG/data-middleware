@@ -1,4 +1,4 @@
-import unittest
+import unittest2
 import os.path
 from loguru import logger
 import time
@@ -14,11 +14,11 @@ from datamidware.pydm import (
 
 # Read config.ini file
 config_object = ConfigParser()
-config_object.read('./datamidware/settings/config.ini')
+config_object.read('./settings/config.ini')
 mysql_cred = config_object["MYSQL"]
 
 
-class TestDataBase(unittest.TestCase):
+class TestDataBase(unittest2.TestCase):
     def setUp(self):
 
         # Get the user, the host, and the password from config.ini file
@@ -128,7 +128,7 @@ class TestDataBaseCreation(TestDataBase):
 
 # Test Runner
 if __name__ == '__main__':
-    unittest.main()
+    unittest2.main()
 
 
 # Database: titanic

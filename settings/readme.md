@@ -19,3 +19,8 @@ password = password2
 The write_config.py have created and saved a configuration file (e.g., sample_config.ini)
 The read_config.py shows how to read a config file.
 The update_config.py shows how to update key in a config file.
+
+-------------------------------------------------------------------------------
+ # Install all dependencies using following command
+
+    pip install -r requirements.txt
