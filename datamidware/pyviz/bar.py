@@ -1,10 +1,10 @@
 # Bar plot (vertical, horizontal, group, stack), unsorted, sorted (ascending, descending), NLargest, NSmallest
 # from pandas DataFrame, List-Array likes, NumPy Array (long-, wide-, mix- from data)
-# ===================================================================================
+# Save figures as static files (.png, .jpeg, .pdf) ,  and save to database (mysql, nosql)
+# =============================================================================================================
 import plotly.express as px
-import pandas as pd
-import numpy as np
 import os
+import pymysql
 
 
 class BarChart:
@@ -21,7 +21,7 @@ class BarChart:
             color_continuous_scale=None, plot_bgcolor=None, paper_bgcolor=None, uniformtext_minsize=8, uniformtext_mode="hide",
             marker={}, selector={}, trace_name=None, update_trace_text=False, trace_text=None, texttemplate='%{text:.2s}', textangle=None, textposition="outside",
             textfont={}, bar_width=None, hoverinfo=None, hoverlabel=None, hovertemplate=None, hovertext=None, sort_asc=False, sort_desc=False,
-            N_largest=None, N_smallest=None, file_path=None, file_type="png", show=True):
+            N_largest=None, N_smallest=None, file_path=None, save2db={}, file_type="png", show=True):
 
         if sort_asc:
 
@@ -36,7 +36,7 @@ class BarChart:
                                trace_name=trace_name, update_trace_text=update_trace_text, trace_text=None, texttemplate=texttemplate,
                                textangle=textangle, textposition=textposition, textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo,
                                hoverlabel=hoverlabel, hovertemplate=hovertemplate, hovertext=hovertext, file_path=file_path,
-                               file_type=file_type, show=show)
+                               save2db=save2db, file_type=file_type, show=show)
 
         elif sort_desc:
 
@@ -51,7 +51,7 @@ class BarChart:
                                 trace_name=trace_name, update_trace_text=update_trace_text, trace_text=trace_text, texttemplate=texttemplate,
                                 textangle=textangle, textposition=textposition, textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo,
                                 hoverlabel=hoverlabel, hovertemplate=hovertemplate, hovertext=hovertext, file_path=file_path,
-                                file_type=file_type, show=show)
+                                save2db=save2db, file_type=file_type, show=show)
 
         elif N_largest:
 
@@ -66,7 +66,7 @@ class BarChart:
                             trace_name=trace_name, update_trace_text=update_trace_text, trace_text=trace_text, texttemplate=texttemplate,
                             textangle=textangle, textposition=textposition, textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo,
                             hoverlabel=hoverlabel, hovertemplate=hovertemplate, hovertext=hovertext, N_largest=N_largest, file_path=file_path,
-                            file_type=file_type, show=show)
+                            save2db=save2db, file_type=file_type, show=show)
 
         elif N_smallest:
 
@@ -82,7 +82,7 @@ class BarChart:
                              trace_name=trace_name, update_trace_text=update_trace_text, trace_text=trace_text, texttemplate=texttemplate,
                              textangle=textangle, textposition=textposition, textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo,
                              hoverlabel=hoverlabel, hovertemplate=hovertemplate, hovertext=hovertext, N_smallest=N_smallest,
-                             file_path=file_path, file_type=file_type, show=show)
+                             save2db=save2db, file_path=file_path, file_type=file_type, show=show)
 
         else:
 
@@ -95,7 +95,7 @@ class BarChart:
                       uniformtext_minsize=uniformtext_minsize, uniformtext_mode=uniformtext_mode, marker=marker, selector=selector,
                       trace_name=trace_name, update_trace_text=update_trace_text, trace_text=trace_text, texttemplate=texttemplate,
                       textangle=textangle, textposition=textposition, textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo,
-                      hoverlabel=hoverlabel, hovertemplate=hovertemplate, hovertext=hovertext, file_path=file_path,
+                      hoverlabel=hoverlabel, hovertemplate=hovertemplate, hovertext=hovertext, file_path=file_path, save2db=save2db,
                       file_type=file_type, show=show)
 
     # Horizontal Bar Chart
@@ -105,7 +105,7 @@ class BarChart:
             color_continuous_scale=None, plot_bgcolor=None, paper_bgcolor=None, uniformtext_minsize=8, uniformtext_mode="hide",
             marker={}, selector={}, trace_name=None, update_trace_text=False, trace_text=None, texttemplate='%{text:.2s}', textangle=None, textposition="outside",
             textfont={}, bar_width=None, hoverinfo=None, hoverlabel=None, hovertemplate=None, hovertext=None, sort_asc=False, sort_desc=False,
-            N_largest=None, N_smallest=None, file_path=None, file_type="png", show=True):
+            N_largest=None, N_smallest=None, file_path=None, save2db={}, file_type="png", show=True):
 
         if sort_asc:
             df.sort_values(by=x, ascending=True, inplace=True, ignore_index=True)
@@ -119,7 +119,7 @@ class BarChart:
                                trace_name=trace_name, update_trace_text=update_trace_text, trace_text=None, texttemplate=texttemplate,
                                textangle=textangle, textposition=textposition, textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo,
                                hoverlabel=hoverlabel, hovertemplate=hovertemplate, hovertext=hovertext, file_path=file_path,
-                               file_type=file_type, show=show)
+                               save2db=save2db, file_type=file_type, show=show)
 
         elif sort_desc:
 
@@ -134,7 +134,7 @@ class BarChart:
                                 trace_name=trace_name, update_trace_text=update_trace_text, trace_text=trace_text, texttemplate=texttemplate,
                                 textangle=textangle, textposition=textposition, textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo,
                                 hoverlabel=hoverlabel, hovertemplate=hovertemplate, hovertext=hovertext, file_path=file_path,
-                                file_type=file_type, show=show)
+                                save2db=save2db, file_type=file_type, show=show)
 
         elif N_largest:
 
@@ -150,7 +150,7 @@ class BarChart:
                             trace_name=trace_name, update_trace_text=update_trace_text, trace_text=trace_text, texttemplate=texttemplate,
                             textangle=textangle, textposition=textposition, textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo,
                             hoverlabel=hoverlabel, hovertemplate=hovertemplate, hovertext=hovertext, N_largest=N_largest, file_path=file_path,
-                            file_type=file_type, show=show)
+                            save2db=save2db, file_type=file_type, show=show)
 
         elif N_smallest:
 
@@ -165,7 +165,7 @@ class BarChart:
                              trace_name=trace_name, update_trace_text=update_trace_text, trace_text=trace_text, texttemplate=texttemplate,
                              textangle=textangle, textposition=textposition, textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo,
                              hoverlabel=hoverlabel, hovertemplate=hovertemplate, hovertext=hovertext, N_smallest=N_smallest,
-                             file_path=file_path, file_type=file_type, show=show)
+                             file_path=file_path, save2db=save2db, file_type=file_type, show=show)
 
         else:
 
@@ -178,7 +178,7 @@ class BarChart:
                       uniformtext_minsize=uniformtext_minsize, uniformtext_mode=uniformtext_mode, marker=marker, selector=selector,
                       trace_name=trace_name, update_trace_text=update_trace_text, trace_text=trace_text, texttemplate=texttemplate,
                       textangle=textangle, textposition=textposition, textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo,
-                      hoverlabel=hoverlabel, hovertemplate=hovertemplate, hovertext=hovertext, file_path=file_path,
+                      hoverlabel=hoverlabel, hovertemplate=hovertemplate, hovertext=hovertext, file_path=file_path, save2db=save2db,
                       file_type=file_type, show=show)
 
     def _bar_sort_asc(self, df, x, y, color, set_col_color, title, orientation, labels, update_title, update_xaxes,
@@ -186,7 +186,7 @@ class BarChart:
                       hover_data, barmode, bargap, bargroupgap, color_discrete_sequence, color_continuous_scale,
                       fig_width, fig_height, plot_bgcolor, paper_bgcolor, uniformtext_minsize, uniformtext_mode, marker, selector,
                       trace_name, update_trace_text, trace_text, texttemplate, textangle, textposition, textfont, bar_width, hoverinfo,
-                      hoverlabel, hovertemplate, hovertext, file_path, file_type, show):
+                      hoverlabel, hovertemplate, hovertext, file_path, save2db, file_type, show):
         try:
 
             fig = px.bar(df, x=x, y=y, color=color, labels=labels, title=title, hover_data=hover_data, hover_name=hover_name,
@@ -364,6 +364,39 @@ class BarChart:
                 file_name = file_path + "{}_asc".format(title.lower().replace(' ', '_')) + ".webp"
                 fig.write_image(file_name)
                 print('File, {}, has been created successfully'.format(file_name))
+
+            if save2db:
+                host = save2db["host"]
+                user = save2db["user"]
+                password = save2db["password"]
+                db_name = save2db["db_name"]
+                tb_name = save2db["tb_name"]
+
+                try:
+                    if save2db["db_type"] == "mysql":
+                        print(host, user, password, db_name, tb_name)
+
+                        # convert image to binary object
+                        img = fig.to_image(format="png")
+                        img_name = title.lower().replace(' ', '_') + "_asc"
+
+                        # Insert image as BLOB data into mysql table
+                        # if table exists, insert data avoiding duplicate
+                        if exists_tb(host, user, password, db_name, tb_name):
+
+                            # insert data to existing table
+                            image2mysql(host, user, password, db_name, tb_name, img_name, img)
+
+                        # if table does not exist
+                        else:
+
+                            # create new table and insert data
+                            create_tb(host, user, password, db_name, tb_name)
+                            image2mysql(host, user, password, db_name, tb_name, img_name, img)
+
+                except Exception as e:
+                    print('Error: {}'.format(str(e)))
+
             if show:
                 fig.show()
 
@@ -375,7 +408,7 @@ class BarChart:
                        hover_data, barmode, bargap, bargroupgap, color_discrete_sequence, color_continuous_scale,
                        fig_width, fig_height, plot_bgcolor, paper_bgcolor, uniformtext_minsize, uniformtext_mode, marker, selector,
                        trace_name, update_trace_text, trace_text, texttemplate, textangle, textposition, textfont, bar_width, hoverinfo,
-                       hoverlabel, hovertemplate, hovertext, file_path, file_type, show):
+                       hoverlabel, hovertemplate, hovertext, file_path, save2db, file_type, show):
         try:
 
             fig = px.bar(df, x=x, y=y, color=color, labels=labels, title=title, hover_data=hover_data, hover_name=hover_name,
@@ -553,6 +586,39 @@ class BarChart:
                 file_name = file_path + "{}_desc".format(title.lower().replace(' ', '_')) + ".webp"
                 fig.write_image(file_name)
                 print('File, {}, has been created successfully'.format(file_name))
+
+            if save2db:
+                host = save2db["host"]
+                user = save2db["user"]
+                password = save2db["password"]
+                db_name = save2db["db_name"]
+                tb_name = save2db["tb_name"]
+
+                try:
+                    if save2db["db_type"] == "mysql":
+                        print(host, user, password, db_name, tb_name)
+
+                        # convert image to binary object
+                        img = fig.to_image(format="png")
+                        img_name = title.lower().replace(' ', '_') + "_desc"
+
+                        # Insert image as BLOB data into mysql table
+                        # if table exists, insert data avoiding duplicate
+                        if exists_tb(host, user, password, db_name, tb_name):
+
+                            # insert data to existing table
+                            image2mysql(host, user, password, db_name, tb_name, img_name, img)
+
+                        # if table does not exist
+                        else:
+
+                            # create new table and insert data
+                            create_tb(host, user, password, db_name, tb_name)
+                            image2mysql(host, user, password, db_name, tb_name, img_name, img)
+
+                except Exception as e:
+                    print('Error: {}'.format(str(e)))
+
             if show:
                 fig.show()
 
@@ -564,7 +630,7 @@ class BarChart:
                    hover_data, barmode, bargap, bargroupgap, color_discrete_sequence, color_continuous_scale,
                    fig_width, fig_height, plot_bgcolor, paper_bgcolor, uniformtext_minsize, uniformtext_mode, marker, selector,
                    trace_name, update_trace_text, trace_text, texttemplate, textangle, textposition, textfont, bar_width, hoverinfo,
-                   hoverlabel, hovertemplate, hovertext, N_largest, file_path, file_type, show):
+                   hoverlabel, hovertemplate, hovertext, N_largest, file_path, save2db, file_type, show):
         try:
 
             fig = px.bar(df, x=x, y=y, color=color, labels=labels, title=title, hover_data=hover_data, hover_name=hover_name,
@@ -727,6 +793,39 @@ class BarChart:
                 file_name = file_path + "{}_top_{}".format(title.lower().replace(' ', '_'), N_largest) + ".webp"
                 fig.write_image(file_name)
                 print('File, {}, has been created successfully'.format(file_name))
+
+            if save2db:
+                host = save2db["host"]
+                user = save2db["user"]
+                password = save2db["password"]
+                db_name = save2db["db_name"]
+                tb_name = save2db["tb_name"]
+
+                try:
+                    if save2db["db_type"] == "mysql":
+                        print(host, user, password, db_name, tb_name)
+
+                        # convert image to binary object
+                        img = fig.to_image(format="png")
+                        img_name = title.lower().replace(' ', '_') + "_top_{}".format(N_largest)
+
+                        # Insert image as BLOB data into mysql table
+                        # if table exists, insert data avoiding duplicate
+                        if exists_tb(host, user, password, db_name, tb_name):
+
+                            # insert data to existing table
+                            image2mysql(host, user, password, db_name, tb_name, img_name, img)
+
+                        # if table does not exist
+                        else:
+
+                            # create new table and insert data
+                            create_tb(host, user, password, db_name, tb_name)
+                            image2mysql(host, user, password, db_name, tb_name, img_name, img)
+
+                except Exception as e:
+                    print('Error: {}'.format(str(e)))
+
             if show:
                 fig.show()
 
@@ -738,7 +837,7 @@ class BarChart:
                     hover_data, barmode, bargap, bargroupgap, color_discrete_sequence, color_continuous_scale,
                     fig_width, fig_height, plot_bgcolor, paper_bgcolor, uniformtext_minsize, uniformtext_mode, marker, selector,
                     trace_name, update_trace_text, trace_text, texttemplate, textangle, textposition, textfont, bar_width, hoverinfo,
-                    hoverlabel, hovertemplate, hovertext, N_smallest, file_path, file_type, show):
+                    hoverlabel, hovertemplate, hovertext, N_smallest, file_path, save2db, file_type, show):
         try:
 
             fig = px.bar(df, x=x, y=y, color=color, labels=labels, title=title, hover_data=hover_data, hover_name=hover_name,
@@ -901,6 +1000,39 @@ class BarChart:
                 file_name = file_path + "{}_bottom_{}".format(title.lower().replace(' ', '_'), N_smallest) + ".webp"
                 fig.write_image(file_name)
                 print('File, {}, has been created successfully'.format(file_name))
+
+            if save2db:
+                host = save2db["host"]
+                user = save2db["user"]
+                password = save2db["password"]
+                db_name = save2db["db_name"]
+                tb_name = save2db["tb_name"]
+
+                try:
+                    if save2db["db_type"] == "mysql":
+                        print(host, user, password, db_name, tb_name)
+
+                        # convert image to binary object
+                        img = fig.to_image(format="png")
+                        img_name = title.lower().replace(' ', '_') + "_bottom_{}".format(N_smallest)
+
+                        # Insert image as BLOB data into mysql table
+                        # if table exists, insert data avoiding duplicate
+                        if exists_tb(host, user, password, db_name, tb_name):
+
+                            # insert data to existing table
+                            image2mysql(host, user, password, db_name, tb_name, img_name, img)
+
+                        # if table does not exist
+                        else:
+
+                            # create new table and insert data
+                            create_tb(host, user, password, db_name, tb_name)
+                            image2mysql(host, user, password, db_name, tb_name, img_name, img)
+
+                except Exception as e:
+                    print('Error: {}'.format(str(e)))
+
             if show:
                 fig.show()
 
@@ -912,7 +1044,7 @@ class BarChart:
              hover_data, barmode, bargap, bargroupgap, color_discrete_sequence, color_continuous_scale,
              fig_width, fig_height, plot_bgcolor, paper_bgcolor, uniformtext_minsize, uniformtext_mode, marker, selector,
              trace_name, update_trace_text, trace_text, texttemplate, textangle, textposition, textfont, bar_width, hoverinfo,
-             hoverlabel, hovertemplate, hovertext, file_path, file_type, show):
+             hoverlabel, hovertemplate, hovertext, file_path, save2db, file_type, show):
 
         try:
 
@@ -1092,9 +1224,180 @@ class BarChart:
                 file_name = file_path + "{}".format(title.lower().replace(' ', '_')) + ".webp"
                 fig.write_image(file_name)
                 print('File, {}, has been created successfully'.format(file_name))
+
+            if save2db:
+                host = save2db["host"]
+                user = save2db["user"]
+                password = save2db["password"]
+                db_name = save2db["db_name"]
+                tb_name = save2db["tb_name"]
+
+                try:
+                    if save2db["db_type"] == "mysql":
+                        print(host, user, password, db_name, tb_name)
+
+                        # convert image to binary object
+                        img = fig.to_image(format="png")
+                        img_name = title.lower().replace(' ', '_')
+
+                        # Insert image as BLOB data into mysql table
+                        # if table exists, insert data avoiding duplicate
+                        if exists_tb(host, user, password, db_name, tb_name):
+
+                            # insert data to existing table
+                            image2mysql(host, user, password, db_name, tb_name, img_name, img)
+
+                        # if table does not exist
+                        else:
+
+                            # create new table and insert data
+                            create_tb(host, user, password, db_name, tb_name)
+                            image2mysql(host, user, password, db_name, tb_name, img_name, img)
+
+                except Exception as e:
+                    print('Error: {}'.format(str(e)))
+
             if show:
                 fig.show()
 
         except Exception as e:
             print('Error: {}'.format(str(e)))
+
+
+# Checks if given table already exists or not
+def exists_tb(host, user, password, db_name, tb_name):
+    """
+    Return True if table exists, else return False.
+
+    :param host: host
+    :param user: user
+    :param password: password
+    :param db_name: name of the pydb
+    :param tb_name: table name to check if exists or not
+    :return: True if exists, else return False
+    """
+    # Create a connection object
+    connection = pymysql.connect(host=host,
+                                 user=user,
+                                 password=password,
+                                 database=db_name,
+                                 autocommit=True,
+                                 cursorclass=pymysql.cursors.DictCursor)
+
+    # print('Connected to DB: {}'.format(host))
+
+    # Create a cursor object
+    cursor = connection.cursor()
+
+    # check if table exists
+    sql_query = "SHOW TABLES"
+    cursor.execute(sql_query)
+
+    for tb in cursor:
+        # print(tb.values())
+        for val in tb.values():
+            if val == tb_name:
+                return True
+
+    return False
+
+
+# Create table "image" for figures
+def create_tb(host, user, password, db_name, tb_name):
+    """
+    Create image table.
+
+    :param host:
+    :param user:
+    :param password:
+    :param db:
+    :param tb:
+    :return:
+    """
+    # Create a connection object
+    connection = pymysql.connect(host=host,
+                                 user=user,
+                                 password=password,
+                                 database=db_name,
+                                 autocommit=True)
+
+    # print('Connected to DB: {}'.format(host))
+
+    # Create a cursor object
+    cursor = connection.cursor()
+
+    # create table "image"
+    sql_query = "CREATE TABLE {} (id BIGINT AUTO_INCREMENT PRIMARY KEY, " \
+                "img_name VARCHAR(100), " \
+                "image LONGBLOB, " \
+                "UNIQUE KEY (img_name))".format(tb_name)
+
+    cursor.execute(sql_query)
+
+    # Check table is created or not
+    sql_query_show_tb = "SHOW TABLES"
+    cursor.execute(sql_query_show_tb)
+
+    for tb in cursor:
+        print(tb)
+
+    return False
+
+
+# Insert image file as BLOB into mysql database
+def image2mysql(host, user, password, db_name=None, tb_name=None,
+                img_name=None, img=None):
+    """
+
+    :param host:
+    :param user:
+    :param password:
+    :param db_name:
+    :param tb_name:
+    :param img_name:
+    :param filename:
+    :param size:
+    :param mod_date:
+    :return:
+    """
+    print("Inserting BLOB into table")
+    try:
+        connection = pymysql.connect(host=host,
+                                     user=user,
+                                     password=password,
+                                     autocommit=True,
+                                     database=db_name,
+                                     cursorclass=pymysql.cursors.DictCursor)
+
+        cursor = connection.cursor()
+        # if table exists, insert data avoiding duplicate
+        if exists_tb(host, user, password, db_name, tb_name):
+
+            sql_query = "REPLACE INTO {}(img_name, image) VALUES (%s, %s)".format(tb_name)
+
+            # Convert data into tuple format
+            insert_blob_tuple = (img_name, img)
+            result = cursor.execute(sql_query, insert_blob_tuple)
+            connection.commit()
+            print("Image inserted successfully as a BLOB into {} table".format(tb_name), result)
+            connection.close()
+            print("MySQL connection is closed")
+
+        # if table does not exist
+        else:
+
+            # create new table and insert data
+            create_tb(host, user, password, db_name, tb_name)
+            sql_query = "INSERT INTO {}(img_name, image) VALUES (%s, %s)".format(tb_name)
+
+            # Convert data into tuple format
+            insert_blob_tuple = (img_name, img)
+            result = cursor.execute(sql_query, insert_blob_tuple)
+            connection.commit()
+            print("Image inserted successfully as a BLOB into {} table".format(tb_name), result)
+            connection.close()
+            print("MySQL connection is closed")
+
+    except Exception as e:
+        print("Failed inserting BLOB data into MySQL table {}".format(e))
 

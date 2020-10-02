@@ -1,4 +1,4 @@
-import unittest2
+import unittest
 import os.path
 from loguru import logger
 import time
@@ -18,7 +18,7 @@ config_object.read('./settings/config.ini')
 mysql_cred = config_object["MYSQL"]
 
 
-class TestDataBase(unittest2.TestCase):
+class TestDataBase(unittest.TestCase):
     def setUp(self):
 
         # Get the user, the host, and the password from config.ini file
@@ -128,7 +128,7 @@ class TestDataBaseCreation(TestDataBase):
 
 # Test Runner
 if __name__ == '__main__':
-    unittest2.main()
+    unittest.main()
 
 
 # Database: titanic

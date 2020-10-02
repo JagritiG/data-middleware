@@ -131,7 +131,7 @@ def exists_db(host, user, password, db_name):
     # Create a cursor object
     cursor = connection.cursor()
 
-    # check if pydb exists
+    # check if db exists
     sql_query = "SHOW DATABASES"
     cursor.execute(sql_query)
 

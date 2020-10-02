@@ -1,5 +1,5 @@
 """
-Implementation of db2viz() function:
+Implementation of mysql2viz() function:
 Visualize table data
 
 param host: host name
@@ -27,7 +27,7 @@ import pymysql
 from datamidware.pyviz import bar
 
 
-def db2viz(host, user, password, db_name, tb_name, db_type="mysql", kind=None, x=None, y=None,
+def mysql2viz(host, user, password, db_name, tb_name, kind=None, x=None, y=None,
            xcol_pos=None, ycol_pos=None, color=None, title=None, labels={}, set_col_color=None,
            update_title={}, update_xaxes={}, update_yaxes={}, xtickangle=None, ytickangle=None,
            xtickformat=None, ytickformat=None, update_legend={}, update_font={}, hover_name=None,
@@ -45,7 +45,6 @@ def db2viz(host, user, password, db_name, tb_name, db_type="mysql", kind=None, x
     :param password:
     :param db_name:
     :param tb_name:
-    :param xdb_type:
     :param kind:
     :param data:
     :param x:
@@ -103,52 +102,51 @@ def db2viz(host, user, password, db_name, tb_name, db_type="mysql", kind=None, x
     """
 
     plot = bar.BarChart()
-    if db_type == "mysql":
 
-        # if db "db_name" exits
-        try:
-            if exists_db(host, user, password, db_name=db_name):
+    try:
+        # if db exits
+        if exists_db(host, user, password, db_name=db_name):
 
-                # if table already exists
-                if exists_tb(host, user, password, db_name=db_name, tb_name=tb_name):
+            # if table already exists
+            if exists_tb(host, user, password, db_name=db_name, tb_name=tb_name):
 
-                    # get the table data into pandas dataframe
-                    df = mysql2df(host, user, password, db_name, tb_name)
+                # get the table data into pandas dataframe
+                df = mysql2df(host, user, password, db_name, tb_name)
 
-                    # remove all whitespaces in the columns
-                    df.columns = df.columns.str.replace(' ', '')
+                # remove all whitespaces in the columns
+                df.columns = df.columns.str.replace(' ', '')
 
-                    # plot bar chart
-                    if kind == "bar":
-                        plot.bar(df=df, x=x, y=y, xcol_pos=xcol_pos, ycol_pos=ycol_pos, color=color, title=title, labels=labels,
-                                     set_col_color=set_col_color, update_title=update_title, update_xaxes=update_xaxes, update_yaxes=update_yaxes,
-                                     xtickangle=xtickangle, ytickangle=ytickangle, xtickformat=xtickformat, ytickformat=ytickformat,
-                                     update_legend=update_legend, update_font=update_font, hover_name=hover_name,
-                                     hover_data=hover_data, barmode=barmode, bargap=bargap, bargroupgap=bargroupgap,
-                                     color_discrete_sequence=color_discrete_sequence, fig_width=fig_width, fig_height=fig_height,
-                                     color_continuous_scale=color_continuous_scale, plot_bgcolor=plot_bgcolor, paper_bgcolor=paper_bgcolor,
-                                     uniformtext_minsize=uniformtext_minsize, uniformtext_mode=uniformtext_mode,
-                                     marker=marker, selector=selector, trace_name=trace_name, update_trace_text=update_trace_text,
-                                     trace_text=trace_text, texttemplate=texttemplate, textangle=textangle, textposition=textposition,
-                                     textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo, hoverlabel=hoverlabel, hovertemplate=hovertemplate,
-                                     hovertext=hovertext, sort_asc=sort_asc, sort_desc=sort_desc,
-                                     N_largest=N_largest, N_smallest=N_smallest, file_path=file_path, file_type=file_type, show=show)
+                # plot bar chart
+                if kind == "bar":
+                    plot.bar(df=df, x=x, y=y, xcol_pos=xcol_pos, ycol_pos=ycol_pos, color=color, title=title, labels=labels,
+                             set_col_color=set_col_color, update_title=update_title, update_xaxes=update_xaxes, update_yaxes=update_yaxes,
+                             xtickangle=xtickangle, ytickangle=ytickangle, xtickformat=xtickformat, ytickformat=ytickformat,
+                             update_legend=update_legend, update_font=update_font, hover_name=hover_name,
+                             hover_data=hover_data, barmode=barmode, bargap=bargap, bargroupgap=bargroupgap,
+                             color_discrete_sequence=color_discrete_sequence, fig_width=fig_width, fig_height=fig_height,
+                             color_continuous_scale=color_continuous_scale, plot_bgcolor="rgba(0, 0, 0, 0)", paper_bgcolor="rgba(0, 0, 0, 0)",
+                             uniformtext_minsize=uniformtext_minsize, uniformtext_mode=uniformtext_mode,
+                             marker=marker, selector=selector, trace_name=trace_name, update_trace_text=update_trace_text,
+                             trace_text=trace_text, texttemplate=texttemplate, textangle=textangle, textposition=textposition,
+                             textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo, hoverlabel=hoverlabel, hovertemplate=hovertemplate,
+                             hovertext=hovertext, sort_asc=sort_asc, sort_desc=sort_desc,
+                             N_largest=N_largest, N_smallest=N_smallest, file_path=file_path, file_type=file_type, show=show)
 
-                    # plot horizontal bar chart
-                    if kind == "barh":
-                        plot.barh(df=df, x=x, y=y, xcol_pos=xcol_pos, ycol_pos=ycol_pos, color=color, title=title, orientation="h", labels=labels,
-                                     set_col_color=set_col_color, update_title=update_title, update_xaxes=update_xaxes, update_yaxes=update_yaxes,
-                                     xtickangle=xtickangle, ytickangle=ytickangle, xtickformat=xtickformat, ytickformat=ytickformat,
-                                     update_legend=update_legend, update_font=update_font, hover_name=hover_name,
-                                     hover_data=hover_data, barmode=barmode, bargap=bargap, bargroupgap=bargroupgap,
-                                     color_discrete_sequence=color_discrete_sequence, fig_width=fig_width, fig_height=fig_height,
-                                     color_continuous_scale=color_continuous_scale, plot_bgcolor=plot_bgcolor, paper_bgcolor=paper_bgcolor,
-                                     uniformtext_minsize=uniformtext_minsize, uniformtext_mode=uniformtext_mode,
-                                     marker=marker, selector=selector, trace_name=trace_name, update_trace_text=update_trace_text,
-                                     trace_text=trace_text, texttemplate=texttemplate, textangle=textangle, textposition=textposition,
-                                     textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo, hoverlabel=hoverlabel, hovertemplate=hovertemplate,
-                                     hovertext=hovertext, sort_asc=sort_asc, sort_desc=sort_desc,
-                                     N_largest=N_largest, N_smallest=N_smallest, file_path=file_path, file_type=file_type, show=show)
+                # plot horizontal bar chart
+                if kind == "barh":
+                    plot.barh(df=df, x=x, y=y, xcol_pos=xcol_pos, ycol_pos=ycol_pos, color=color, title=title, orientation="h", labels=labels,
+                              set_col_color=set_col_color, update_title=update_title, update_xaxes=update_xaxes, update_yaxes=update_yaxes,
+                              xtickangle=xtickangle, ytickangle=ytickangle, xtickformat=xtickformat, ytickformat=ytickformat,
+                              update_legend=update_legend, update_font=update_font, hover_name=hover_name,
+                              hover_data=hover_data, barmode=barmode, bargap=bargap, bargroupgap=bargroupgap,
+                              color_discrete_sequence=color_discrete_sequence, fig_width=fig_width, fig_height=fig_height,
+                              color_continuous_scale=color_continuous_scale, plot_bgcolor="rgba(0, 0, 0, 0)", paper_bgcolor="rgba(0, 0, 0, 0)",
+                              uniformtext_minsize=uniformtext_minsize, uniformtext_mode=uniformtext_mode,
+                              marker=marker, selector=selector, trace_name=trace_name, update_trace_text=update_trace_text,
+                              trace_text=trace_text, texttemplate=texttemplate, textangle=textangle, textposition=textposition,
+                              textfont=textfont, bar_width=bar_width, hoverinfo=hoverinfo, hoverlabel=hoverlabel, hovertemplate=hovertemplate,
+                              hovertext=hovertext, sort_asc=sort_asc, sort_desc=sort_desc,
+                              N_largest=N_largest, N_smallest=N_smallest, file_path=file_path, file_type=file_type, show=show)
 
                     if kind == "line":
                         pass
@@ -168,21 +166,17 @@ def db2viz(host, user, password, db_name, tb_name, db_type="mysql", kind=None, x
                     if kind == "pie":
                         pass
 
-                # if table does not exist, raise error
-                else:
-
-                    raise ImportError("table {} does not exist.".format(tb_name))
-
-            # if db does not exist, raise error
+            # if table does not exist, raise error
             else:
-                raise ImportError("db {} does not exist.".format(db_name))
 
-        except Exception as e:
-            print('Error: {}'.format(str(e)))
+                raise ImportError("table {} does not exist.".format(tb_name))
 
-    if db_type == "nosql":
+        # if db does not exist, raise error
+        else:
+            raise ImportError("db {} does not exist.".format(db_name))
 
-            pass
+    except Exception as e:
+        print('Error: {}'.format(str(e)))
 
 
 # ====================================================================
@@ -220,7 +214,7 @@ def exists_db(host, user, password, db_name):
     # Create a cursor object
     cursor = connection.cursor()
 
-    # check if pydb exists
+    # check if db exists
     sql_query = "SHOW DATABASES"
     cursor.execute(sql_query)
 
@@ -307,6 +301,4 @@ def mysql2df(host, user, password, db_name, tb_name):
     finally:
         engine.dispose()
         session.close()
-
-
 
