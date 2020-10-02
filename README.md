@@ -39,4 +39,4 @@ Datamidware: Data Middleware
 
 Package installation:
 -------------------------------------------------
-    pip install -i https://test.pypi.org/simple/ datamidware==0.0.2
+    pip install -i https://test.pypi.org/simple/ datamidware==0.0.11
