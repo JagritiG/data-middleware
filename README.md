@@ -252,6 +252,9 @@ The **DataMidWare** performs the following tasks:
         - [Anaconda](https://docs.anaconda.com/anaconda/navigator/install/) ([Windows](https://docs.anaconda.com/anaconda/install/windows/)/[Linux](https://docs.anaconda.com/anaconda/install/linux/)/[MacOS](https://docs.anaconda.com/anaconda/install/mac-os/))
         - [Miniconda](https://docs.conda.io/en/latest/miniconda.html) ([Windows](https://docs.conda.io/en/latest/miniconda.html#windows-installers)/[Linux](https://docs.conda.io/en/latest/miniconda.html#linux-installers)/[MacOS](https://docs.conda.io/en/latest/miniconda.html#macosx-installers))
 
+## Code Example:
+**[datamidware](https://github.com/JagritiG/data-middleware/blob/master/docs/datamidware.pdf)**
+
 ### Package installation:
 
 **Clone from [GitHub](https://github.com/JagritiG/data-middleware)** or install using pip:
