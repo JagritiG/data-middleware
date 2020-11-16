@@ -80,10 +80,10 @@ The DataMidWare performs the following tasks:
 - **[pyalgo](datamidware/pyalgo)**: Algorithm library
     - Search algorithms
     - Sort algorithms
-- **pydb**: Database connection and SQL query library
-- **pydp**: Data Processing library
-- **pydm**: Middleware library
-- **pyviz**: Data Visualization library
+- **[pydb](datamidware/pydb)**: Database connection and SQL query library
+- **[pydp](datamidware/pydp)**: Data Processing library
+- **[pydm](datamidware/pydm)**: Middleware library
+- **[pyviz](datamidware/pyviz)**: Data Visualization library
 - **settings**: Contains write_config.py and config.ini
 - **tests**: Contains test modules
 
