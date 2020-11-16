@@ -83,22 +83,22 @@ The DataMidWare performs the following tasks:
 
  1. [file2db.file2db](datamidware/pydm/file2db.py)(host, user, password, filename, db_name, tb_name, file_type="file_type", db_type="db_type") :
 
-    Imports raw structured/semi-structured data (csv, json) into database (MySQL, NoSQL).
+        Imports raw structured/semi-structured data (csv, json) into database (MySQL, NoSQL).
 
-    Parameters:
-        host: host name
-        user: user name
-        password: password
-        filename: filename to send to database
-        file_type: file type (csv, json), str
-        db_type: database type (mysql, nosql), str
-        tb_name: name of the table where data will be stored
+        Parameters:
+            host: host name
+            user: user name
+            password: password
+            filename: filename to send to database
+            file_type: file type (csv, json), str
+            db_type: database type (mysql, nosql), str
+            tb_name: name of the table where data will be stored
 
-    Import statement: from datamidware.pydm import file2db
+        Import statement: from datamidware.pydm import file2db
 
 
 
-    2. [db2file.db2file](https://github.com/JagritiG/data-middleware/blob/master/datamidware/pydm/db2file.py)(host, user, password, file_path, db_name, tb_name, file_type="file_type", db_type="db_type") :
+ 2. [db2file.db2file](datamidware/pydm/db2file.py)(host, user, password, file_path, db_name, tb_name, file_type="file_type", db_type="db_type") :
 
         Exports table data as csv/json format from the database
 
@@ -112,11 +112,11 @@ The DataMidWare performs the following tasks:
             db_name: database name from where data is exported
             tb_name: name of the table from where data will be exported
 
-    Import statement: from datamidware.pydm import db2file
+        Import statement: from datamidware.pydm import db2file
 
 
 
-    3. [create_mysql_db.create_mysql_db](https://github.com/JagritiG/data-middleware/blob/master/datamidware/pydm/create_mysql_db.py)(host, user, password, db_name) :
+ 3. [create_mysql_db.create_mysql_db](datamidware/pydm/create_mysql_db.py)(host, user, password, db_name) :
 
         Creates a new MySQL database
 
@@ -126,11 +126,11 @@ The DataMidWare performs the following tasks:
             password: password
             db_name: database name to be created
 
-    Import statement: from datamidware.pydm import create_mysql_db
+        Import statement: from datamidware.pydm import create_mysql_db
 
 
 
-    4. [csv2mysql.csv2mysql](https://github.com/JagritiG/data-middleware/blob/master/datamidware/pydm/csv2mysql.py)(host, user, password, filename, db_name, tb_name) :
+ 4. [csv2mysql.csv2mysql](datamidware/pydm/csv2mysql.py)(host, user, password, filename, db_name, tb_name) :
 
         Imports csv file into mysql database
 
@@ -146,10 +146,10 @@ The DataMidWare performs the following tasks:
                        in the existing table, if not exists, create new table and import
                        data.
 
-    Import statement: from datamidware.pydm import csv2mysql
+        Import statement: from datamidware.pydm import csv2mysql
 
 
-    5. [json2mysql.json2mysql](https://github.com/JagritiG/data-middleware/blob/master/datamidware/pydm/json2mysql.py)(host, user, password, filename, db_name, tb_name, key=None) :
+ 5. [json2mysql.json2mysql](datamidware/pydm/json2mysql.py)(host, user, password, filename, db_name, tb_name, key=None) :
 
         Imports json file and converts json file into pandas DataFrame.
         Sends DataFrame to mysql database table
@@ -167,10 +167,10 @@ The DataMidWare performs the following tasks:
                            data.
             key: json key name to create mysql table
 
-    Import statement: from datamidware.pydm import json2mysql
+        Import statement: from datamidware.pydm import json2mysql
 
 
-    6. [mysql2csv.mysql2csv](https://github.com/JagritiG/data-middleware/blob/master/datamidware/pydm/mysql2csv.py)(host, user, password, file_path, db_name, tb_name) :
+ 6. [mysql2csv.mysql2csv](datamidware/pydm/mysql2csv.py)(host, user, password, file_path, db_name, tb_name) :
 
         Exports csv file from mysql database table
 
@@ -184,7 +184,7 @@ The DataMidWare performs the following tasks:
 
         Import statement: from datamidware.pydm import mysql2csv
 
-    6. [db2viz.db2viz](https://github.com/JagritiG/data-middleware/blob/master/datamidware/pydm/db2viz.py)(host, user, password, db_name, tb_name, kind=None, x=None, y=None, …):
+ 6. [db2viz.db2viz](datamidware/pydm/db2viz.py)(host, user, password, db_name, tb_name, kind=None, x=None, y=None, …):
 
        Visualize the Database table data
 
@@ -204,7 +204,7 @@ The DataMidWare performs the following tasks:
        Import statement: from datamidware.pydm import db2viz
 
 
-    8. Class [mysql_query.MySQLDatabase](https://github.com/JagritiG/data-middleware/blob/master/datamidware/pydm/mysql_query.py)():
+ 8. Class [mysql_query.MySQLDatabase](datamidware/pydm/mysql_query.py)():
         - Database connection class.
         - Performs mysql queries.
         - For example:
