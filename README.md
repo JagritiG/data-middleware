@@ -170,9 +170,9 @@ The DataMidWare performs the following tasks:
 
  6. ***[db2viz.db2viz](datamidware/pydm/db2viz.py)(host, user, password, db_name, tb_name, kind=None, x=None, y=None, …)***:
 
-       Visualize the Database table data
+        Visualize the Database table data
 
-       Parameters:
+        Parameters:
             host: host name
             user: user name
             password: password
@@ -185,7 +185,7 @@ The DataMidWare performs the following tasks:
             title: title of the figure
             label: x-label, y-label
 
-       Import statement: from datamidware.pydm import db2viz
+        Import statement: from datamidware.pydm import db2viz
 
 
  8. ***Class [mysql_query.MySQLDatabase](datamidware/pydm/mysql_query.py)()***:
