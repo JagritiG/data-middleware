@@ -81,7 +81,7 @@ The DataMidWare performs the following tasks:
 
 ## APIs:
 
-    1. [file2db.file2db](https://github.com/JagritiG/data-middleware/blob/master/datamidware/pydm/file2db.py)(host, user, password, filename, db_name, tb_name, file_type="file_type", db_type="db_type") :
+    1. [file2db.file2db](datamidware/pydm/file2db.py)(host, user, password, filename, db_name, tb_name, file_type="file_type", db_type="db_type") :
 
     Imports raw structured/semi-structured data (csv, json) into database (MySQL, NoSQL).
 
