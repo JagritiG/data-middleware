@@ -81,7 +81,7 @@ The DataMidWare performs the following tasks:
 
 ## APIs:
 
- 1. [file2db.file2db](datamidware/pydm/file2db.py)(host, user, password, filename, db_name, tb_name, file_type="file_type", db_type="db_type") :
+ 1. ***[file2db.file2db](datamidware/pydm/file2db.py)(host, user, password, filename, db_name, tb_name, file_type="file_type", db_type="db_type")*** :
 
         Imports raw structured/semi-structured data (csv, json) into database (MySQL, NoSQL).
 
@@ -98,7 +98,7 @@ The DataMidWare performs the following tasks:
 
 
 
- 2. [db2file.db2file](datamidware/pydm/db2file.py)(host, user, password, file_path, db_name, tb_name, file_type="file_type", db_type="db_type") :
+ 2. ***[db2file.db2file](datamidware/pydm/db2file.py)(host, user, password, file_path, db_name, tb_name, file_type="file_type", db_type="db_type")*** :
 
         Exports table data as csv/json format from the database
 
@@ -116,7 +116,7 @@ The DataMidWare performs the following tasks:
 
 
 
- 3. [create_mysql_db.create_mysql_db](datamidware/pydm/create_mysql_db.py)(host, user, password, db_name) :
+ 3. ***[create_mysql_db.create_mysql_db](datamidware/pydm/create_mysql_db.py)(host, user, password, db_name)*** :
 
         Creates a new MySQL database
 
@@ -130,7 +130,7 @@ The DataMidWare performs the following tasks:
 
 
 
- 4. [csv2mysql.csv2mysql](datamidware/pydm/csv2mysql.py)(host, user, password, filename, db_name, tb_name) :
+ 4. ***[csv2mysql.csv2mysql](datamidware/pydm/csv2mysql.py)(host, user, password, filename, db_name, tb_name)*** :
 
         Imports csv file into mysql database
 
@@ -149,7 +149,7 @@ The DataMidWare performs the following tasks:
         Import statement: from datamidware.pydm import csv2mysql
 
 
- 5. [json2mysql.json2mysql](datamidware/pydm/json2mysql.py)(host, user, password, filename, db_name, tb_name, key=None) :
+ 5. ***[json2mysql.json2mysql](datamidware/pydm/json2mysql.py)(host, user, password, filename, db_name, tb_name, key=None)*** :
 
         Imports json file and converts json file into pandas DataFrame.
         Sends DataFrame to mysql database table
@@ -170,7 +170,7 @@ The DataMidWare performs the following tasks:
         Import statement: from datamidware.pydm import json2mysql
 
 
- 6. [mysql2csv.mysql2csv](datamidware/pydm/mysql2csv.py)(host, user, password, file_path, db_name, tb_name) :
+ 6. ***[mysql2csv.mysql2csv](datamidware/pydm/mysql2csv.py)(host, user, password, file_path, db_name, tb_name)*** :
 
         Exports csv file from mysql database table
 
@@ -184,7 +184,7 @@ The DataMidWare performs the following tasks:
 
         Import statement: from datamidware.pydm import mysql2csv
 
- 6. [db2viz.db2viz](datamidware/pydm/db2viz.py)(host, user, password, db_name, tb_name, kind=None, x=None, y=None, …):
+ 6. ***[db2viz.db2viz](datamidware/pydm/db2viz.py)(host, user, password, db_name, tb_name, kind=None, x=None, y=None, …)***:
 
        Visualize the Database table data
 
@@ -204,12 +204,12 @@ The DataMidWare performs the following tasks:
        Import statement: from datamidware.pydm import db2viz
 
 
- 8. Class [mysql_query.MySQLDatabase](datamidware/pydm/mysql_query.py)():
+ 8. ***Class [mysql_query.MySQLDatabase](datamidware/pydm/mysql_query.py)()***:
         - Database connection class.
         - Performs mysql queries.
         - For example:
 
-        --> mysql_query.MySQLDatabase.select(tb_name, row_count="all")
+        --> ***mysql_query.MySQLDatabase.select(tb_name, row_count="all")***
 
                 Execute SQL query: SELECT * FROM table.
                 Selecting all(or one if row_count="one") rows from the table.
@@ -219,7 +219,7 @@ The DataMidWare performs the following tasks:
                     row_count: "all" or "one" row. default "all".
                     return: list of rows selected.
 
-        --> mysql_query.MySQLDatabase.drop_column(tb_name, col_name)
+        --> ***mysql_query.MySQLDatabase.drop_column(tb_name, col_name)***
 
                 Drop a column in a table.
 
@@ -233,7 +233,7 @@ The DataMidWare performs the following tasks:
                     col_name: The name of the column to delete from the table.
                     return: number of rows affected after modification
 
-        --> mysql_query.MySQLDatabase.rename_column(tb_name, old_name, new_name, col_def, col_pos=None)
+        --> ***mysql_query.MySQLDatabase.rename_column(tb_name, old_name, new_name, col_def, col_pos=None)***
                 Rename a column in a table.
 
                 Execute SQL query:
