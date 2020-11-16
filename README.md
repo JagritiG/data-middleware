@@ -241,6 +241,9 @@ The **DataMidWare** performs the following tasks:
                                 if you wish to change its position.
                     return: number of rows affected after modification
 
+## Code Example:
+**[datamidware](https://github.com/JagritiG/data-middleware/blob/master/docs/datamidware.pdf)**
+
 ## Deployment and Execution
 
 ### Dependencies: Software, Tools, Libraries
@@ -251,9 +254,6 @@ The **DataMidWare** performs the following tasks:
     - Installation & setup:
         - [Anaconda](https://docs.anaconda.com/anaconda/navigator/install/) ([Windows](https://docs.anaconda.com/anaconda/install/windows/)/[Linux](https://docs.anaconda.com/anaconda/install/linux/)/[MacOS](https://docs.anaconda.com/anaconda/install/mac-os/))
         - [Miniconda](https://docs.conda.io/en/latest/miniconda.html) ([Windows](https://docs.conda.io/en/latest/miniconda.html#windows-installers)/[Linux](https://docs.conda.io/en/latest/miniconda.html#linux-installers)/[MacOS](https://docs.conda.io/en/latest/miniconda.html#macosx-installers))
-
-## Code Example:
-**[datamidware](https://github.com/JagritiG/data-middleware/blob/master/docs/datamidware.pdf)**
 
 ### Package installation:
 
@@ -303,7 +303,7 @@ The **DataMidWare** performs the following tasks:
     python3 -m unittest tests/test_mysql_query.py
 
 
-### Future Work
+## Future Work
 - Extend all the libraries – (data processing, algorithms, and data visualization library)
 - Integrate Exploratory and Inferential data analysis library
 - Integrate Machine Learning algorithms library
