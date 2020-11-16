@@ -7,7 +7,7 @@
 - Bulk time is spent on data preparation (According to ***[Anaconda survey-2020](https://www.anaconda.com/state-of-data-science-2020)***, on average 45% of time is spent on data preparation, 21% of time spent on visualization)
 
 ### Why DataMidWare?
-***Accelerate data preparation, analysis, and visualization tasks  under a unified and single framework to overcome efficiency gap***
+***DataMidWare accelerates data preparation, analysis, and visualization tasks  under a unified and single framework to overcome efficiency gap***
 
 
 ## Introduction:
