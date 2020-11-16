@@ -4,6 +4,7 @@
 **DataMidWare** is a data middleware python library which ***accelerates data preparation, analysis, and visualization*** tasks by integrating
 different technologies, software, and libraries using its APIs.
 
+The DataMidWare performs the following tasks:
 - Provides direct interactions with database, data preparation & processing tool, algorithm library, and data visualization tool using its APIs.
 - Imports and parses raw data (csv, json, txt, xml) from different sources and load to database (MySQL, NoSQL).
 - Produces clean data from raw format and stores into database for analysis
@@ -16,7 +17,7 @@ different technologies, software, and libraries using its APIs.
 
 
 ## Dependencies: Software, Tools, Libraries
---------------------------------------------------------------------
+
 - IDE: PyCharm 18.3    ([Installation & setup](https://www.jetbrains.com/help/pycharm/installation-guide.html): Windows/Linux/MacOS)
 - MySQL Workbench 6.3  ([Installation & setup](https://dev.mysql.com/doc/workbench/en/wb-installing.html): [Windows](https://dev.mysql.com/doc/workbench/en/wb-windows.html)/[Linux](https://dev.mysql.com/doc/workbench/en/wb-linux.html)/[MacOS](https://dev.mysql.com/doc/workbench/en/wb-mac.html))
 - Programming language: Python (version 3.7)
@@ -29,17 +30,17 @@ different technologies, software, and libraries using its APIs.
 
 
 ## Package installation using pip:
----------------------------------------------------------------------
+
     pip install -i https://test.pypi.org/simple/ datamidware==0.0.11
 
 
 ## Install python dependency packages from requirements.txt using pip:
-----------------------------------------------------------------------
+
     pip install –r requirements.txt
 
 
 ## Package Structure Overview:
---------------------------------------------------------------------------------------------------------
+
     datamidware/                                     Top-level package
             __init__.py
             pyalgo/
@@ -78,8 +79,8 @@ different technologies, software, and libraries using its APIs.
 
 
 
-Modules:
----------------------------------------------------------------------------------------------------------
+## APIs:
+
     1. file2db.file2db(host, user, password, filename, db_name, tb_name, file_type="file_type", db_type="db_type") :
 
     Imports raw structured/semi-structured data (csv, json) into database (MySQL, NoSQL).
@@ -181,71 +182,89 @@ Modules:
             db_name: name of the database from where data will be exported
             tb_name: name of the table from where data will be exported
 
-    Import statement: from datamidware.pydm import mysql2csv
+        Import statement: from datamidware.pydm import mysql2csv
+
+    6. db2viz.db2viz(host, user, password, db_name, tb_name, kind=None, x=None, y=None, …):
+
+       Visualize the Database table data
+
+       Parameters:
+            host: host name
+            user: user name
+            password: password
+            db_name: database name
+            tb_name: table name
+            kind: plot kind (bar, horizontal bar, hist,..)
+            file_path: file path to save figure
+            x: x data; list or array-like
+            y: y data; list or array-like
+            title: title of the figure
+            label: x-label, y-label
+
+       Import statement: from datamidware.pydm import db2viz
 
 
-    . class mysql_query.MySQLDatabase() :
-    Database connection class.
-    Performs mysql queries.
-    For example:
+    8. Class mysql_query.MySQLDatabase():
+        - Database connection class.
+        - Performs mysql queries.
+        - For example:
 
-    --> mysql_query.MySQLDatabase.select(tb_name, row_count="all")
+        --> mysql_query.MySQLDatabase.select(tb_name, row_count="all")
 
-            Execute SQL query: SELECT * FROM table.
-            Selecting all(or one if row_count="one") rows from the table.
+                Execute SQL query: SELECT * FROM table.
+                Selecting all(or one if row_count="one") rows from the table.
 
-            Parameters:
-                query: SQL query to select rows: SELECT * FROM <table>
-                row_count: "all" or "one" row. default "all".
-                return: list of rows selected.
+                Parameters:
+                    query: SQL query to select rows: SELECT * FROM <table>
+                    row_count: "all" or "one" row. default "all".
+                    return: list of rows selected.
 
-    --> mysql_query.MySQLDatabase.drop_column(tb_name, col_name)
+        --> mysql_query.MySQLDatabase.drop_column(tb_name, col_name)
 
-            Drop a column in a table.
+                Drop a column in a table.
 
-            Execute SQL query:
+                Execute SQL query:
 
-                "ALTER TABLE <table name>
-                    DROP COLUMN <column name>"
+                    "ALTER TABLE <table name>
+                        DROP COLUMN <column name>"
 
-            Parameters:
-                tb_name: The name of the table to modify
-                col_name: The name of the column to delete from the table.
-                return: number of rows affected after modification
+                Parameters:
+                    tb_name: The name of the table to modify
+                    col_name: The name of the column to delete from the table.
+                    return: number of rows affected after modification
 
-    --> mysql_query.MySQLDatabase.rename_column(tb_name, old_name, new_name, col_def, col_pos=None)
-            Rename a column in a table.
+        --> mysql_query.MySQLDatabase.rename_column(tb_name, old_name, new_name, col_def, col_pos=None)
+                Rename a column in a table.
 
-            Execute SQL query:
+                Execute SQL query:
 
-                "ALTER TABLE <table name>
-                    CHANGE COLUMN <old name> <new name>
-                    column_definition
-                    [ FIRST | AFTER column_name ]"
+                    "ALTER TABLE <table name>
+                        CHANGE COLUMN <old name> <new name>
+                        column_definition
+                        [ FIRST | AFTER column_name ]"
 
-            Parameters:
-                tb_name: The name of the table to modify
-                old_name: The column name to rename
-                new_name: The new name for the column
-                col_def: The data type and definition of the column (NULL or NOT NULL, etc).
-                            You must specify the column definition when renaming the column,
-                            even if it does not change.
-                col_pos: Optional. It tells MySQL where in the table to position the column,
-                            if you wish to change its position.
-                return: number of rows affected after modification
+                Parameters:
+                    tb_name: The name of the table to modify
+                    old_name: The column name to rename
+                    new_name: The new name for the column
+                    col_def: The data type and definition of the column (NULL or NOT NULL, etc).
+                                You must specify the column definition when renaming the column,
+                                even if it does not change.
+                    col_pos: Optional. It tells MySQL where in the table to position the column,
+                                if you wish to change its position.
+                    return: number of rows affected after modification
 
 
 
-Configuration file & Unittest:
-----------------------------------------------------------------------------------------------
- # To test all the modules, run following unittest command
- from the top-level directory
+## Configuration file & Unittest:
+
+ To test all the modules, run following unittest command from the top-level directory
 
     python3 -m unittest tests/*.py
 
  OR
 
- To test individual modules, run following unittest commands from the top-level directory
+ To test individual module, run following unittest commands from the top-level directory
 
     python3 -m unittest tests/test_pydm.py
     python3 -m unittest tests/test_pyviz.py
@@ -253,12 +272,12 @@ Configuration file & Unittest:
     python3 -m unittest tests/test_sort.py
     python3 -m unittest tests/test_mysql_query.py
 
-Note: To successfully run the test, config.ini file needs to be updated
+**Note**: To successfully run the test, **config.ini** file needs to be updated
 
 To write config.ini file, follow the below steps:
 
 -> go to settings/
--> update write_config.py with database connection credentials, for e.g.,
+-> update **write_config.py** with database connection credentials, for e.g.,
 
 (for MYSQL database connection)
 
@@ -268,7 +287,7 @@ To write config.ini file, follow the below steps:
         "password": "datamidware"
      }
 
-     ### content of config.ini
+     # content of config.ini
      [MYSQL]
      host = localhost
      user = root
