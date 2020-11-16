@@ -4,7 +4,7 @@
 **DataMidWare** is a data middleware python library which ***accelerates data preparation, analysis, and visualization*** tasks by integrating
 different technologies, software, and libraries using its APIs.
 
-The DataMidWare performs the following tasks:
+The **DataMidWare** performs the following tasks:
 - Provides direct interactions with database, data preparation & processing tool, algorithm library, and data visualization tool using its APIs.
 - Imports and parses raw data (csv, json, txt, xml) from different sources and load to database (MySQL, NoSQL).
 - Produces clean data from raw format and stores into database for analysis
