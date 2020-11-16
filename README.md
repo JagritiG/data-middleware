@@ -14,7 +14,7 @@ The DataMidWare performs the following tasks:
 - Exports data in different format (csv, json) from database.
 
 ## Architectural Overview:
-(https://github.com/JagritiG/data-middleware/blob/master/docs/fig/architectural_overview_datamidware.png)
+![Alt Text](/docs/fig/architectural_overview_datamidware.png)
 
 ## Package Structure Overview:
 
