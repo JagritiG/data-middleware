@@ -191,7 +191,7 @@ if __name__ == "__main__":
 
     db = MySQLDatabase(host, user, password, db_name)
 
-    # test deb.select()
+    # test db.select()
     rows = db.select(tb_name, row_count="one")
     print(rows)
 

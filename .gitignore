@@ -6,9 +6,6 @@ __pycache__
 
 # Compiled python modules.
 *.pyc
-
-config.ini
-write_config.py
 /pyviz/image
 datamidware/pydb/
 datamidware/pydp/

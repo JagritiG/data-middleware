@@ -21,22 +21,18 @@ Datamidware: Data Middleware
 
                 Python data middleware
 
-            docs/
-                    Document files
-
-            tests/
-                    All test modules and test data
-
-            settings/
-
-                    Installation and setup modules
-                    Config files
 
 
 
 
 
 
-Package installation:
+Package installation using pip:
 -------------------------------------------------
     pip install -i https://test.pypi.org/simple/ datamidware==0.0.11
+
+
+Install python dependency packages from requirements.txt using pip:
+----------------------------------------------------------------------
+    pip install –r requirements.txt
+

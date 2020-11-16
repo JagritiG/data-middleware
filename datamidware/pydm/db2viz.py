@@ -96,7 +96,9 @@ def db2viz(host, user, password, db_name, tb_name, db_type=None, kind=None, x=No
     :param N_largest:
     :param N_smallest:
     :param file_path:
-    :param save2db:
+    :param save2db: dict(host="hostname", user = "user",
+                         password = "password", db_name = "db_name",
+                         tb_name = "tb_name")
     :param file_type:
     :param show:
     :return:

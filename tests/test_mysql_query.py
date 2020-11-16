@@ -3,7 +3,7 @@ from loguru import logger
 import time
 from configparser import ConfigParser
 
-from pydm import (
+from datamidware.pydm import (
     csv2mysql,
     mysql_query)
 
