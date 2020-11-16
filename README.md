@@ -266,7 +266,27 @@ The **DataMidWare** performs the following tasks:
 
     pip install –r requirements.txt
 
-### Configuration file & Unittest:
+### Configuration file & testing:
+
+- To successfully run the test, **config.ini** file is required
+- To write config.ini file, follow the below steps:
+    - go to -> settings
+    - update **write_config.py** with database connection credentials, for e.g.,
+```
+(for MYSQL database connection)
+
+     config_object["MYSQL"] = {
+        "host": "localhost",
+        "user": "root",
+        "password": "datamidware"
+     }
+
+     # content of config.ini
+     [MYSQL]
+     host = localhost
+     user = root
+     password = datamidware
+```
 
  To test all the modules, run following unittest command from the top-level directory
 
@@ -281,27 +301,6 @@ The **DataMidWare** performs the following tasks:
     python3 -m unittest tests/test_search.py
     python3 -m unittest tests/test_sort.py
     python3 -m unittest tests/test_mysql_query.py
-
-**Note**: To successfully run the test, **config.ini** file needs to be updated
-
-To write config.ini file, follow the below steps:
-
--> go to settings/
--> update **write_config.py** with database connection credentials, for e.g.,
-
-(for MYSQL database connection)
-
-     config_object["MYSQL"] = {
-        "host": "localhost",
-        "user": "root",
-        "password": "datamidware"
-     }
-
-     # content of config.ini
-     [MYSQL]
-     host = localhost
-     user = root
-     password = datamidware
 
 
 ### Future Work
