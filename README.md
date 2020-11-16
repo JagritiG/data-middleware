@@ -190,9 +190,9 @@ The DataMidWare performs the following tasks:
 
        Parameters:
             host: host name
-            user: user name
+            user: user name
             password: password
-            db_name: database name
+            db_name: database name
             tb_name: table name
             kind: plot kind (bar, horizontal bar, hist,..)
             file_path: file path to save figure
@@ -209,7 +209,8 @@ The DataMidWare performs the following tasks:
         - Performs mysql queries.
         - For example:
 
-        --> ***mysql_query.MySQLDatabase.select(tb_name, row_count="all")***
+        ```
+        mysql_query.MySQLDatabase.select(tb_name, row_count="all")
 
                 Execute SQL query: SELECT * FROM table.
                 Selecting all(or one if row_count="one") rows from the table.
@@ -219,7 +220,9 @@ The DataMidWare performs the following tasks:
                     row_count: "all" or "one" row. default "all".
                     return: list of rows selected.
 
-        --> ***mysql_query.MySQLDatabase.drop_column(tb_name, col_name)***
+        ```
+
+        mysql_query.MySQLDatabase.drop_column(tb_name, col_name)
 
                 Drop a column in a table.
 
@@ -233,7 +236,7 @@ The DataMidWare performs the following tasks:
                     col_name: The name of the column to delete from the table.
                     return: number of rows affected after modification
 
-        --> ***mysql_query.MySQLDatabase.rename_column(tb_name, old_name, new_name, col_def, col_pos=None)***
+        mysql_query.MySQLDatabase.rename_column(tb_name, old_name, new_name, col_def, col_pos=None)
                 Rename a column in a table.
 
                 Execute SQL query:
