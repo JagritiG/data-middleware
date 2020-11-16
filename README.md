@@ -301,4 +301,11 @@ To write config.ini file, follow the below steps:
      password = datamidware
 
 
+### Future Work
+- Extend all the libraries – (data processing, algorithms, and data visualization library)
+- Integrate Exploratory and Inferential data analysis library
+- Integrate Machine Learning algorithms library
+- Integrate Web Visualization
+- Integrate with other Databases (MSSQL)
+- Integrate with Splunk
 
