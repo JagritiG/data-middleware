@@ -14,31 +14,6 @@ The DataMidWare performs the following tasks:
 - Exports data in different format (csv, json) from database.
 
 
-
-
-## Dependencies: Software, Tools, Libraries
-
-- IDE: PyCharm 18.3    ([Installation & setup](https://www.jetbrains.com/help/pycharm/installation-guide.html): Windows/Linux/MacOS)
-- MySQL Workbench 6.3  ([Installation & setup](https://dev.mysql.com/doc/workbench/en/wb-installing.html): [Windows](https://dev.mysql.com/doc/workbench/en/wb-windows.html)/[Linux](https://dev.mysql.com/doc/workbench/en/wb-linux.html)/[MacOS](https://dev.mysql.com/doc/workbench/en/wb-mac.html))
-- Programming language: Python (version 3.7)
-    - Installation & setup:
-        - [Anaconda](https://docs.anaconda.com/anaconda/navigator/install/) ([Windows](https://docs.anaconda.com/anaconda/install/windows/)/[Linux](https://docs.anaconda.com/anaconda/install/linux/)/[MacOS](https://docs.anaconda.com/anaconda/install/mac-os/))
-        - [Miniconda](https://docs.conda.io/en/latest/miniconda.html) ([Windows](https://docs.conda.io/en/latest/miniconda.html#windows-installers)/[Linux](https://docs.conda.io/en/latest/miniconda.html#linux-installers)/[MacOS](https://docs.conda.io/en/latest/miniconda.html#macosx-installers))
-
-- Python dependency packages:
-
-
-
-## Package installation using pip:
-
-    pip install -i https://test.pypi.org/simple/ datamidware==0.0.11
-
-
-## Install python dependency packages from requirements.txt using pip:
-
-    pip install –r requirements.txt
-
-
 ## Package Structure Overview:
 
     datamidware/                                     Top-level package
@@ -264,9 +239,29 @@ The DataMidWare performs the following tasks:
                                 if you wish to change its position.
                     return: number of rows affected after modification
 
+## Deployment and Execution
+
+### Dependencies: Software, Tools, Libraries
+
+- IDE: PyCharm 18.3    ([Installation & setup](https://www.jetbrains.com/help/pycharm/installation-guide.html): Windows/Linux/MacOS)
+- MySQL Workbench 6.3  ([Installation & setup](https://dev.mysql.com/doc/workbench/en/wb-installing.html): [Windows](https://dev.mysql.com/doc/workbench/en/wb-windows.html)/[Linux](https://dev.mysql.com/doc/workbench/en/wb-linux.html)/[MacOS](https://dev.mysql.com/doc/workbench/en/wb-mac.html))
+- Programming language: Python (version 3.7)
+    - Installation & setup:
+        - [Anaconda](https://docs.anaconda.com/anaconda/navigator/install/) ([Windows](https://docs.anaconda.com/anaconda/install/windows/)/[Linux](https://docs.anaconda.com/anaconda/install/linux/)/[MacOS](https://docs.anaconda.com/anaconda/install/mac-os/))
+        - [Miniconda](https://docs.conda.io/en/latest/miniconda.html) ([Windows](https://docs.conda.io/en/latest/miniconda.html#windows-installers)/[Linux](https://docs.conda.io/en/latest/miniconda.html#linux-installers)/[MacOS](https://docs.conda.io/en/latest/miniconda.html#macosx-installers))
+
+### Package installation:
+
+**Clone from [GitHub](https://github.com/JagritiG/data-middleware)** or install using pip:
+
+    pip install -i https://test.pypi.org/simple/ datamidware==0.0.11
 
 
-## Configuration file & Unittest:
+### Install python dependency packages from requirements.txt using pip:
+
+    pip install –r requirements.txt
+
+### Configuration file & Unittest:
 
  To test all the modules, run following unittest command from the top-level directory
 
