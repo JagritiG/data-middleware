@@ -76,7 +76,7 @@ The DataMidWare performs the following tasks:
             test_pydp.py
             test_pydm
             test_mysql_query.py
-```
+
 **[pyalgo](datamidware/pyalgo)**: Algorithm library
     - Search algorithms
     - Sort algorithms
@@ -86,7 +86,7 @@ The DataMidWare performs the following tasks:
 **pyviz**: Data Visualization library
 **settings**: Contains write_config.py and config.ini
 **tests**: Contains test modules
-```
+
 
 ## APIs:
 
