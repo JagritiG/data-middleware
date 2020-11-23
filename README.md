@@ -259,7 +259,7 @@ The **DataMidWare** performs the following tasks:
 ### Dependencies: Software, Tools, Libraries and Environment Installation
 
 - IDE: PyCharm 18.3    ([Installation & setup](https://www.jetbrains.com/help/pycharm/installation-guide.html): Windows/Linux/MacOS)
-- MySQL Community Server 8.0.21
+- MySQL Community Server 8.0.21 ([How to install?](docs/datamidware.pdf), [Linux](https://www.youtube.com/watch?v=3qD6zv7thdE), [Window](https://www.youtube.com/watch?v=WuBcTJnIuzo), [MacOS](https://www.youtube.com/watch?v=UcpHkYfWarM))
 - MySQL Workbench 6.3  ([Installation & setup](https://dev.mysql.com/doc/workbench/en/wb-installing.html): [Windows](https://dev.mysql.com/doc/workbench/en/wb-windows.html)/[Linux](https://dev.mysql.com/doc/workbench/en/wb-linux.html)/[MacOS](https://dev.mysql.com/doc/workbench/en/wb-mac.html))
 - Programming language: Python (version 3.7)
     - Installation & setup:
