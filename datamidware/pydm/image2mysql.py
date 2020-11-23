@@ -6,7 +6,7 @@ import time
 
 
 # Insert Image file as a BLOB data into MySQL Table from disk/directory
-def dirimg2mysql(host, user, password, db_name=None, tb_name=None, dir_path=None, ext=None):
+def image2mysql(host, user, password, db_name=None, tb_name=None, dir_path=None, ext=None):
     """
     Insert images from disk or directory to mysql table.
 
@@ -37,7 +37,7 @@ def dirimg2mysql(host, user, password, db_name=None, tb_name=None, dir_path=None
                     # time.localtime([secs]) converts a time expressed in seconds to local time
                     mod_date = time.localtime(os.path.getmtime(file))
                     # print(img_name, file_size, mod_date)
-                    image2mysql(host, user, password, db_name, tb_name, id, img_name, file, file_size, mod_date)
+                    to_mysql(host, user, password, db_name, tb_name, id, img_name, file, file_size, mod_date)
                     id += 1
 
                 continue
@@ -59,7 +59,7 @@ def dirimg2mysql(host, user, password, db_name=None, tb_name=None, dir_path=None
                     # time.localtime([secs]) converts a time expressed in seconds to local time
                     mod_date = time.localtime(os.path.getmtime(file))
                     # print(img_name, file_size, mod_date)
-                    image2mysql(host, user, password, db_name, tb_name, id, img_name, file, file_size, mod_date)
+                    to_mysql(host, user, password, db_name, tb_name, id, img_name, file, file_size, mod_date)
                     id += 1
 
                 continue
@@ -69,7 +69,7 @@ def dirimg2mysql(host, user, password, db_name=None, tb_name=None, dir_path=None
 
 
 # Insert image file as BLOB into mysql database
-def image2mysql(host, user, password, db_name=None, tb_name=None, id=None,
+def to_mysql(host, user, password, db_name=None, tb_name=None, id=None,
                 img_name=None, filename=None, size=None, mod_date=None):
     """
 

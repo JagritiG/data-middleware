@@ -77,7 +77,7 @@ The **DataMidWare** performs the following tasks:
 
 ## APIs: ([Reference](docs/userguide/api.pdf))
 
- 1. ***[file2db.file2db](datamidware/pydm/file2db.py)(host, user, password, filename, db_name, tb_name, file_type="file_type", db_type="db_type")*** :
+ 1. ***[file2db.file2db](datamidware/pydm/file2db.py)(host, user, password, filename, db_name, tb_name, file_type="csv", db_type="mysql", key=None)*** :
 
         Imports raw structured/semi-structured data (csv, json) into database (MySQL, NoSQL).
 
@@ -256,9 +256,10 @@ The **DataMidWare** performs the following tasks:
 
 ## Deployment and Execution
 
-### Dependencies: Software, Tools, Libraries
+### Dependencies: Software, Tools, Libraries and Environment Installation
 
 - IDE: PyCharm 18.3    ([Installation & setup](https://www.jetbrains.com/help/pycharm/installation-guide.html): Windows/Linux/MacOS)
+- MySQL Community Server 8.0.21
 - MySQL Workbench 6.3  ([Installation & setup](https://dev.mysql.com/doc/workbench/en/wb-installing.html): [Windows](https://dev.mysql.com/doc/workbench/en/wb-windows.html)/[Linux](https://dev.mysql.com/doc/workbench/en/wb-linux.html)/[MacOS](https://dev.mysql.com/doc/workbench/en/wb-mac.html))
 - Programming language: Python (version 3.7)
     - Installation & setup:
@@ -269,7 +270,7 @@ The **DataMidWare** performs the following tasks:
 
 **Clone from [GitHub](https://github.com/JagritiG/data-middleware)** or install using pip:
 
-    pip install -i https://test.pypi.org/simple/ datamidware==0.0.11
+    pip install -i https://test.pypi.org/simple/ datamidware==2020.11
 
 
 ### Install python dependency packages from requirements.txt using pip:

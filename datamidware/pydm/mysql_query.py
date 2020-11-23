@@ -14,7 +14,7 @@ import sys
 
 
 class MySQLDatabase:
-    """Database connection class."""
+    """Database query class."""
 
     def __init__(self, host, user, password, db_name):
         self.host = host

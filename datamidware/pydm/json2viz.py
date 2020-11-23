@@ -3,6 +3,7 @@ Implementation of json2viz() function:
 Visualize json data
 
 param filename: csv file name
+param key: json key name to visualize
 param kind: plot kind (bar, horizontal bar, stacked bar, group bar, scatter, line, hist,
                        kde, pie and more..)
 param file_path: file path to save figure

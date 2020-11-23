@@ -13,8 +13,8 @@ here = path.abspath(path.dirname(__file__))
 
 setuptools.setup(
     name="datamidware",
-    version="0.0.11",
-    description="Data Middleware",
+    version="2020.11",
+    description="Data Middleware Python Library",
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
 
