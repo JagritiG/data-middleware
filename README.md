@@ -270,7 +270,7 @@ The **DataMidWare** performs the following tasks:
 
 **Clone from [GitHub](https://github.com/JagritiG/data-middleware)** or install using pip:
 
-    pip install -i https://test.pypi.org/simple/ datamidware==2020.11
+    pip install -i https://test.pypi.org/simple/ datamidware==2020.12
 
 
 ### Install python dependency packages from requirements.txt using pip:
