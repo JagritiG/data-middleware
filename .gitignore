@@ -8,7 +8,7 @@ __pycache__
 *.pyc
 /pyviz/image
 datamidware/pydb/
-datamidware/pydp/
+
 
 # Setuptools distribution folder.
 /dist/
