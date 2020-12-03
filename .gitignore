@@ -19,4 +19,6 @@ datamidware/pydp/
 
 /build
 
-
+docs/userguide/api.docx
+docs/userguide/project_setup.docx
+/.pytest_cache

@@ -22,21 +22,21 @@ param tb_name: name of the table -- if table already exists, add data
 from __future__ import print_function
 import pandas as pd
 from .create_mysql_db import create_mysql_db
-import pymysql
+import mysql.connector
 import sqlalchemy as db
 from sqlalchemy.orm import sessionmaker
 
 
 def csv2mysql(host, user, password, filename, db_name, tb_name):
     """
-    Imports csv file into mysql pydb
+    Imports csv file into mysql db
 
     :param host: host name
     :param user: user name
     :param password: password
-    :param filename: filename to send to pydb
-    :param db_name: name of the pydb -- if pydb already exists, import data
-               in the existing pydb, if not exists, create new pydb and import
+    :param filename: filename to send to db
+    :param db_name: name of the pydb -- if db already exists, import data
+               in the existing pydb, if not exists, create new db and import
                data.
     :param tb_name: name of the table -- if table already exists, add data
                in the existing table, if not exists, create new table and import
@@ -44,15 +44,15 @@ def csv2mysql(host, user, password, filename, db_name, tb_name):
     """
 
     # Read csv file in pandas DataFrame
-    df = pd.read_csv(filename, delimiter=',')
-    # print(df.head(3))
+    df = pd.read_csv(filename, delimiter=',', encoding='unicode_escape', error_bad_lines=False)
+    print(df.shape)
 
     # Removing/replacing special character from column name with "_"
     # df.columns = df.columns.str.replace('/', ' ')
     df.columns = df.columns.str.replace(r"[^a-zA-Z\d\_]+", "_")
     # df.columns = df.columns.str.replace(' ', '_')
 
-    # if pydb "db_name" already exits
+    # if "db_name" already exits
     if exists_db(host, user, password, db_name=db_name):
 
         # if table already exists
@@ -99,27 +99,25 @@ def exists_db(host, user, password, db_name):
     :return: True if exists, else return False
     """
     # Create a connection object
-    connection = pymysql.connect(host=host,
+    connection = mysql.connector.connect(host=host,
                                  user=user,
-                                 password=password,
-                                 autocommit=True,
-                                 charset="utf8mb4",
-                                 cursorclass=pymysql.cursors.DictCursor)
+                                 password=password)
 
-    # print('Connected to DB: {}'.format(host))
+    connection.autocommit = True
 
     # Create a cursor object
     cursor = connection.cursor()
 
-    # check if pydb exists
+    # check if db exists
     sql_query = "SHOW DATABASES"
     cursor.execute(sql_query)
 
-    for db in cursor:
-        # print(db.values())
-        for val in db.values():
-            if val == db_name:
-                return True
+    # Fetch all the rows
+    database_list = cursor.fetchall()
+
+    for i in database_list:
+        if i[0] == db_name:
+            return True
 
     return False
 
@@ -137,15 +135,12 @@ def exists_tb(host, user, password, db_name, tb_name):
     :return: True if exists, else return False
     """
     # Create a connection object
-    connection = pymysql.connect(host=host,
+    connection = mysql.connector.connect(host=host,
                                  user=user,
                                  password=password,
-                                 database=db_name,
-                                 autocommit=True,
-                                 charset="utf8mb4",
-                                 cursorclass=pymysql.cursors.DictCursor)
+                                 database=db_name)
 
-    # print('Connected to DB: {}'.format(host))
+    connection.autocommit = True
 
     # Create a cursor object
     cursor = connection.cursor()
@@ -154,11 +149,12 @@ def exists_tb(host, user, password, db_name, tb_name):
     sql_query = "SHOW TABLES"
     cursor.execute(sql_query)
 
-    for tb in cursor:
-        # print(tb.values())
-        for val in tb.values():
-            if val == tb_name:
-                return True
+    # Fetch all the rows
+    table_list = cursor.fetchall()
+
+    for i in table_list:
+        if i[0] == tb_name:
+            return True
 
     return False
 

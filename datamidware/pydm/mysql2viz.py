@@ -23,7 +23,7 @@ from __future__ import absolute_import
 import pandas as pd
 import sqlalchemy as db
 from sqlalchemy.orm import sessionmaker
-import pymysql
+import mysql.connector
 from datamidware.pyviz import bar
 
 
@@ -202,12 +202,11 @@ def exists_db(host, user, password, db_name):
     :return: True if exists, else return False
     """
     # Create a connection object
-    connection = pymysql.connect(host=host,
+    connection = mysql.connector.connect(host=host,
                                  user=user,
                                  password=password,
                                  autocommit=True,
-                                 charset="utf8mb4",
-                                 cursorclass=pymysql.cursors.DictCursor)
+                                 charset="utf8mb4")
 
     # print('Connected to DB: {}'.format(host))
 
@@ -239,14 +238,13 @@ def exists_tb(host, user, password, db_name, tb_name):
     :param tb_name: table name to check if exists or not
     :return: True if exists, else return False
     """
+
     # Create a connection object
-    connection = pymysql.connect(host=host,
+    connection = mysql.connector.connect(host=host,
                                  user=user,
                                  password=password,
                                  database=db_name,
-                                 autocommit=True,
-                                 charset="utf8mb4",
-                                 cursorclass=pymysql.cursors.DictCursor)
+                                 autocommit=True)
 
     # print('Connected to DB: {}'.format(host))
 

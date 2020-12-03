@@ -2,7 +2,8 @@ import unittest
 import os.path
 from loguru import logger
 import time
-from configparser import ConfigParser
+import settings.mysqlconfig as cfg
+
 
 from datamidware.pydm import (
     file2db,
@@ -12,19 +13,13 @@ from datamidware.pydm import (
     mysql_query)
 
 
-# Read config.ini file
-config_object = ConfigParser()
-config_object.read('./settings/config.ini')
-mysql_cred = config_object["MYSQL"]
-
-
 class TestDataBase(unittest.TestCase):
     def setUp(self):
 
-        # Get the user, the host, and the password from config.ini file
-        self.user_mysql = mysql_cred["user"]
-        self.host_mysql = mysql_cred["host"]
-        self.password_mysql = mysql_cred["password"]
+        # Assign the user, the host, and the password
+        self.user_mysql = cfg.mysql["user"]
+        self.host_mysql = cfg.mysql["host"]
+        self.password_mysql = cfg.mysql["password"]
 
         self.filename_csv = "./tests/test_data/titanic_short.csv"
         self.filename_json = "./tests/test_data/product.json"
@@ -48,7 +43,8 @@ class TestDataBaseCreation(TestDataBase):
                 db.open_connection()
                 with db.conn.cursor() as cur:
                     row = db.select("titanic", row_count="one")
-                    self.assertEqual(row, ['Survived', 'Pclass', 'Name', 'Sex', 'Age', 'Siblings_Spouses_Aboard', 'Parents_Children_Aboard', 'Fare'])
+                    # self.assertEqual(row, ['Survived', 'Pclass', 'Name', 'Sex', 'Age', 'Siblings_Spouses_Aboard', 'Parents_Children_Aboard', 'Fare'])
+                    assert row == ['Survived', 'Pclass', 'Name', 'Sex', 'Age', 'Siblings_Spouses_Aboard', 'Parents_Children_Aboard', 'Fare']
                     drop_database = "DROP DATABASE titanic"
                     cur.execute(drop_database)
             except Exception as e:
@@ -75,7 +71,8 @@ class TestDataBaseCreation(TestDataBase):
                 db.open_connection()
                 with db.conn.cursor() as cur:
                     row = db.select("titanic", row_count="one")
-                    self.assertEqual(row, ['Survived', 'Pclass', 'Name', 'Sex', 'Age', 'Siblings_Spouses_Aboard', 'Parents_Children_Aboard', 'Fare'])
+                    # self.assertEqual(row, ['Survived', 'Pclass', 'Name', 'Sex', 'Age', 'Siblings_Spouses_Aboard', 'Parents_Children_Aboard', 'Fare'])
+                    assert row == ['Survived', 'Pclass', 'Name', 'Sex', 'Age', 'Siblings_Spouses_Aboard', 'Parents_Children_Aboard', 'Fare']
                     drop_database = "DROP DATABASE titanic"
                     cur.execute(drop_database)
             except Exception as e:
@@ -102,8 +99,10 @@ class TestDataBaseCreation(TestDataBase):
                 db.open_connection()
                 with db.conn.cursor() as cur:
                     row = db.select("product", row_count="one")
-                    self.assertEqual(row, ['Product_0', 'Product_1', 'Product_2', 'Product_3',
-                                           'Price_0', 'Price_1', 'Price_2', 'Price_3'])
+                    # self.assertEqual(row, ['Product_0', 'Product_1', 'Product_2', 'Product_3',
+                    #                        'Price_0', 'Price_1', 'Price_2', 'Price_3'])
+                    assert row == ['Product_0', 'Product_1', 'Product_2', 'Product_3',
+                                           'Price_0', 'Price_1', 'Price_2', 'Price_3']
                     drop_database = "DROP DATABASE product"
                     cur.execute(drop_database)
             except Exception as e:
@@ -120,7 +119,8 @@ class TestDataBaseCreation(TestDataBase):
         """Test db2file() function."""
         try:
             db2file.db2file(self.host_mysql, self.user_mysql, self.password_mysql, self.output_file_path, "titanic", "titanic", "csv", "mysql")
-            self.assertTrue(os.path.isfile(r"{}/titanic.csv".format(self.output_file_path)), True)
+            # self.assertTrue(os.path.isfile(r"{}/titanic.csv".format(self.output_file_path)), True)
+            assert os.path.isfile(r"{}/titanic.csv".format(self.output_file_path)) == True
 
         except Exception as e:
             print('Error: {}'.format(str(e)))

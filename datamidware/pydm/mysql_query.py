@@ -8,9 +8,9 @@ Implementation of Class mysql_query() in Python:
 """
 # =================================================================
 from __future__ import print_function
-import pymysql
+import mysql.connector
 from loguru import logger
-import sys
+from mysql.connector import errorcode
 
 
 class MySQLDatabase:
@@ -27,18 +27,22 @@ class MySQLDatabase:
         """Connect to MySQL Database."""
         try:
             if self.conn is None:
-                self.conn = pymysql.connect(
+                self.conn = mysql.connector.connect(
                     host=self.host,
                     user=self.user,
                     password=self.password,
                     database=self.db_name,
-                    autocommit=True,
-                    charset="utf8mb4",
-                    cursorclass=pymysql.cursors.DictCursor)
+                    autocommit=True)
 
-        except pymysql.MySQLError as e:
-            logger.error(e)
-            sys.exit()
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print("Something is wrong with user name or password")
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print("Database does not exist")
+            else:
+                print(err)
+        else:
+            self.conn.close()
 
         finally:
             logger.info("Connection opened successfully.")
@@ -68,9 +72,13 @@ class MySQLDatabase:
                 cur.close()
                 return records
 
-        except pymysql.MySQLError as e:
-            print('Error: {}'.format(str(e)))
-
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print("Something is wrong with user name or password")
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print("Database does not exist")
+            else:
+                print(err)
         finally:
             if self.conn:
                 self.conn.close()
@@ -99,8 +107,13 @@ class MySQLDatabase:
                 cur.close()
                 return affected
 
-        except pymysql.MySQLError as e:
-            print('Error: {}'.format(str(e)))
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print("Something is wrong with user name or password")
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print("Database does not exist")
+            else:
+                print(err)
 
         finally:
             if self.conn:
@@ -148,8 +161,13 @@ class MySQLDatabase:
                 cur.close()
                 return affected
 
-        except pymysql.MySQLError as e:
-            print('Error: {}'.format(str(e)))
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print("Something is wrong with user name or password")
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print("Database does not exist")
+            else:
+                print(err)
 
         finally:
             if self.conn:
@@ -171,8 +189,13 @@ class MySQLDatabase:
                 cur.close()
                 return affected
 
-        except pymysql.MySQLError as e:
-            print('Error: {}'.format(str(e)))
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print("Something is wrong with user name or password")
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print("Database does not exist")
+            else:
+                print(err)
 
         finally:
             if self.conn:

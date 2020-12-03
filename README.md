@@ -9,7 +9,6 @@
 ### Why DataMidWare?
 ***DataMidWare accelerates data preparation, analysis, and visualization tasks  under a unified and single framework to overcome efficiency gap***
 
-
 ## Introduction:
 **DataMidWare** is a data middleware python library which ***accelerates data preparation, analysis, and visualization*** tasks by integrating
 different technologies, software, and libraries using its APIs.
@@ -71,9 +70,8 @@ The **DataMidWare** performs the following tasks:
 - **[pydp](datamidware/pydp)**: Data Processing library
 - **[pydm](datamidware/pydm)**: Middleware library
 - **[pyviz](datamidware/pyviz)**: Data Visualization library
-- **settings**: Contains write_config.py and config.ini
+- **settings**: Contains mysqlconfig.py file
 - **tests**: Contains test modules
-
 
 ## APIs: ([Reference](docs/userguide/api.pdf))
 
@@ -251,68 +249,61 @@ The **DataMidWare** performs the following tasks:
                                 if you wish to change its position.
                     return: number of rows affected after modification
 
-## Code Example:
+## Code Examples:
 **[datamidware](https://github.com/JagritiG/data-middleware/blob/master/docs/datamidware.pdf)**
 
-## Deployment and Execution
+## Deployment and Execution [Reference](docs/userguide/project_setup.pdf)
 
-### Dependencies: Software, Tools, Libraries and Environment Installation
+### Environment setup using using PyCharm [Reference](docs/userguide/project_setup.pdf)
 
-- IDE: PyCharm 18.3    ([Installation & setup](https://www.jetbrains.com/help/pycharm/installation-guide.html): Windows/Linux/MacOS)
-- MySQL Community Server 8.0.21 ([How to install?](docs/datamidware.pdf), [Linux](https://www.youtube.com/watch?v=3qD6zv7thdE), [Window](https://www.youtube.com/watch?v=WuBcTJnIuzo), [MacOS](https://www.youtube.com/watch?v=UcpHkYfWarM))
-- MySQL Workbench 6.3  ([Installation & setup](https://dev.mysql.com/doc/workbench/en/wb-installing.html): [Windows](https://dev.mysql.com/doc/workbench/en/wb-windows.html)/[Linux](https://dev.mysql.com/doc/workbench/en/wb-linux.html)/[MacOS](https://dev.mysql.com/doc/workbench/en/wb-mac.html))
+- IDE: PyCharm Installation and setup -
+    - PyCharm 18.3 ([Installation & setup](https://www.jetbrains.com/help/pycharm/installation-guide.html): Windows/Linux/MacOS)
+- Install MySQL server 8.0.22 (using Homebrew on Mac Mojave >= 10.14.4)
+- Install MySQL Workbench 8.0.21 (using Homebrew on Mac Mojave >= 10.14.4)
+- Create new project in virtual environment in PyCharm -
 - Programming language: Python (version 3.7)
-    - Installation & setup:
-        - [Anaconda](https://docs.anaconda.com/anaconda/navigator/install/) ([Windows](https://docs.anaconda.com/anaconda/install/windows/)/[Linux](https://docs.anaconda.com/anaconda/install/linux/)/[MacOS](https://docs.anaconda.com/anaconda/install/mac-os/))
-        - [Miniconda](https://docs.conda.io/en/latest/miniconda.html) ([Windows](https://docs.conda.io/en/latest/miniconda.html#windows-installers)/[Linux](https://docs.conda.io/en/latest/miniconda.html#linux-installers)/[MacOS](https://docs.conda.io/en/latest/miniconda.html#macosx-installers))
-
-### Package installation:
-
-**Clone from [GitHub](https://github.com/JagritiG/data-middleware)** or install using pip:
-
-    pip install -i https://test.pypi.org/simple/ datamidware==2020.12
+- Clone package from Github –
+- Install Database Navigator  -
+- To install dependencies, install requirements.txt  using pip -
 
 
-### Install python dependency packages from requirements.txt using pip:
+### Environment setup using Anaconda [Reference](docs/userguide/project_setup.pdf)
+- Anaconda installation and setup :
+    - [Anaconda](https://docs.anaconda.com/anaconda/navigator/install/) ([Windows](https://docs.anaconda.com/anaconda/install/windows/)/[Linux](https://docs.anaconda.com/anaconda/install/linux/)/[MacOS](https://docs.anaconda.com/anaconda/install/mac-os/))
+    - [Miniconda](https://docs.conda.io/en/latest/miniconda.html) ([Windows](https://docs.conda.io/en/latest/miniconda.html#windows-installers)/[Linux](https://docs.conda.io/en/latest/miniconda.html#linux-installers)/[MacOS](https://docs.conda.io/en/latest/miniconda.html#macosx-installers))
+- Programming language: Python (version 3.7)
+- Using the terminal or an Anaconda Prompt, create a new environment – **$ conda create –n env_name python=3.7**
+- Activate new environment - **$ conda activate  env_name**
+- Install package using pip – **$ pip install -i https://test.pypi.org/simple/ datamidware==2020.12.dev1**
+- Or clone from Github – open terminal and select a project path - **$ cd PATH**
+- To clone type - **$ git clone https://github.com/JagritiG/data-middleware.git**
+- Install requirements.txt  using pip - **$ pip install –r requirements.txt**
 
-    pip install –r requirements.txt
 
-### Configuration file & testing:
+## Configuration file & testing:
 
-- To successfully run the test, **config.ini** file is required
-- To write config.ini file, follow the below steps:
-    - go to -> settings
-    - update **write_config.py** with database connection credentials, for e.g.,
-```
-(for MYSQL database connection)
+- To successfully run the test, update **mysqlconfig.py** file following the below steps:
+    - go to -> settings/
+    - update **mysqlconfig.py** with database connection credentials
 
-     config_object["MYSQL"] = {
-        "host": "localhost",
-        "user": "root",
-        "password": "datamidware"
-     }
 
-     # content of config.ini
-     [MYSQL]
-     host = localhost
-     user = root
-     password = datamidware
-```
+ To test all the modules, run following command from the top-level directory
 
- To test all the modules, run following unittest command from the top-level directory
-
-    python3 -m unittest tests/*.py
+    $ pytest -v tests
 
  OR
 
  To test individual module, run following unittest commands from the top-level directory
 
-    python3 -m unittest tests/test_pydm.py
-    python3 -m unittest tests/test_pyviz.py
-    python3 -m unittest tests/test_search.py
-    python3 -m unittest tests/test_sort.py
-    python3 -m unittest tests/test_mysql_query.py
+    $ pytest -v tests/test_pydm.py
+    $ pytest -v tests/test_pyviz.py
+    $ pytest -v tests/test_mysql_query.py
+    $ python3 -m unittest tests/test_search.py
+    $ python3 -m unittest tests/test_sort.py
 
+## User Guide
+- Project environment setup and execution instructions is available in the **project_setup.pdf** file - **docs/userguide/project_setup.pdf**
+- APIs information is available in the **api.pdf** file - **docs/userguide/api.pdf**
 
 ## Future Work
 - Extend all the libraries – (data processing, algorithms, and data visualization library)

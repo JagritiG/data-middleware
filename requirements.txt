@@ -1,16 +1,26 @@
-certifi==2020.6.20
-chardet==3.0.4
-idna==2.10
+attrs==20.3.0
+certifi==2020.11.8
+importlib-metadata==3.1.0
+iniconfig==1.1.1
 loguru==0.5.3
-numpy==1.19.2
-pandas==1.1.2
-plotly==4.11.0
-psutil==5.7.2
+mkl-fft==1.2.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+mysql-connector-python==8.0.22
+numpy @ file:///opt/concourse/worker/volumes/live/a1b5ea96-b05c-40ba-5dfb-4542ece1c186/volume/numpy_and_numpy_base_1603491228242/work
+packaging==20.7
+pandas @ file:///opt/concourse/worker/volumes/live/bfd63b8c-6035-4ed3-5bce-5690df409bf9/volume/pandas_1602088141563/work
+plotly==4.13.0
+pluggy==0.13.1
+protobuf==3.14.0
+py==1.9.0
 PyMySQL==0.10.1
+pyparsing==2.4.7
+pytest==6.1.2
 python-dateutil==2.8.1
 pytz==2020.1
-requests==2.24.0
 retrying==1.3.3
-six==1.15.0
-SQLAlchemy==1.3.19
-urllib3==1.25.10
+six @ file:///opt/concourse/worker/volumes/live/f983ba11-c9fe-4dff-7ce7-d89b95b09771/volume/six_1605205318156/work
+SQLAlchemy==1.3.20
+toml==0.10.2
+zipp==3.4.0

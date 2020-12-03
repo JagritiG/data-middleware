@@ -23,9 +23,10 @@ param key: json key name to create mysql table
 from __future__ import print_function
 import json
 import pandas as pd
+import mysql.connector
 from pandas.io.json import json_normalize
 from .create_mysql_db import create_mysql_db
-import pymysql
+
 import sqlalchemy as db
 from sqlalchemy.orm import sessionmaker
 
@@ -119,12 +120,10 @@ def exists_db(host, user, password, db_name):
     :return: True if exists, else return False
     """
     # Create a connection object
-    connection = pymysql.connect(host=host,
+    connection = mysql.connector.connect(host=host,
                                  user=user,
                                  password=password,
-                                 autocommit=True,
-                                 charset="utf8mb4",
-                                 cursorclass=pymysql.cursors.DictCursor)
+                                 autocommit=True)
 
     # print('Connected to DB: {}'.format(host))
 
@@ -135,11 +134,12 @@ def exists_db(host, user, password, db_name):
     sql_query = "SHOW DATABASES"
     cursor.execute(sql_query)
 
-    for db in cursor:
-        # print(db.values())
-        for val in db.values():
-            if val == db_name:
-                return True
+    # Fetch all the rows
+    database_list = cursor.fetchall()
+
+    for i in database_list:
+        if i[0] == db_name:
+            return True
 
     return False
 
@@ -157,13 +157,11 @@ def exists_tb(host, user, password, db_name, tb_name):
     :return: True if exists, else return False
     """
     # Create a connection object
-    connection = pymysql.connect(host=host,
+    connection = mysql.connector.connect(host=host,
                                  user=user,
                                  password=password,
                                  database=db_name,
-                                 autocommit=True,
-                                 charset="utf8mb4",
-                                 cursorclass=pymysql.cursors.DictCursor)
+                                 autocommit=True)
 
     # print('Connected to DB: {}'.format(host))
 
@@ -174,11 +172,12 @@ def exists_tb(host, user, password, db_name, tb_name):
     sql_query = "SHOW TABLES"
     cursor.execute(sql_query)
 
-    for tb in cursor:
-        # print(tb.values())
-        for val in tb.values():
-            if val == tb_name:
-                return True
+    # Fetch all the rows
+    table_list = cursor.fetchall()
+
+    for i in table_list:
+        if i[0] == tb_name:
+            return True
 
     return False
 

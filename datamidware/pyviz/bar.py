@@ -4,7 +4,7 @@
 # =============================================================================================================
 import plotly.express as px
 import os
-import pymysql
+import mysql.connector
 
 
 class BarChart:
@@ -1362,12 +1362,10 @@ def image2mysql(host, user, password, db_name=None, tb_name=None,
     """
     print("Inserting BLOB into table")
     try:
-        connection = pymysql.connect(host=host,
+        connection = mysql.connector.connect(host=host,
                                      user=user,
                                      password=password,
-                                     autocommit=True,
-                                     database=db_name,
-                                     cursorclass=pymysql.cursors.DictCursor)
+                                     autocommit=True)
 
         cursor = connection.cursor()
         # if table exists, insert data avoiding duplicate

@@ -1,9 +1,6 @@
 import unittest
 import os.path
-from loguru import logger
-import time
-from configparser import ConfigParser
-
+import settings.mysqlconfig as cfg
 from datamidware.pydm import (
     file2db,
     db2viz,
@@ -11,19 +8,13 @@ from datamidware.pydm import (
     json2viz)
 
 
-# Read config.ini file
-config_object = ConfigParser()
-config_object.read('./settings/config.ini')
-mysql_cred = config_object["MYSQL"]
-
-
 class TestDataViz(unittest.TestCase):
     def setUp(self):
 
-        # Get the user, the host, and the password from config.ini file
-        self.user_mysql = mysql_cred["user"]
-        self.host_mysql = mysql_cred["host"]
-        self.password_mysql = mysql_cred["password"]
+        # Assign the user, the host, and the password
+        self.user_mysql = cfg.mysql["user"]
+        self.host_mysql = cfg.mysql["host"]
+        self.password_mysql = cfg.mysql["password"]
         self.filename_csv = "./tests/test_data/tmdb_results.csv"
         self.filename_json = "./tests/test_data/tmdb_page1.json"
         self.output_file_path = "./tests/test_result/"
@@ -39,7 +30,8 @@ class TestFile2Viz(TestDataViz):
             csv2viz.csv2viz(self.filename_csv, kind="bar",
             y="popularity", x="title", title="TMDB Movies Popularity", labels={"y": "Popularity", "x": "Title"},
             update_trace_text=True, trace_text=None, file_path=self.output_file_path, show=True)
-            self.assertTrue(os.path.isfile(r"{}/tmdb_movies_popularity.png".format(self.output_file_path)), True)
+            # self.assertTrue(os.path.isfile(r"{}/tmdb_movies_popularity.png".format(self.output_file_path)), True)
+            assert os.path.isfile(r"{}/tmdb_movies_popularity.png".format(self.output_file_path)) is True
 
         except Exception as e:
             print('Error: {}'.format(str(e)))
@@ -52,7 +44,8 @@ class TestFile2Viz(TestDataViz):
             json2viz.json2viz(self.filename_json, key="results", kind="bar",
             y="popularity", x="title", title="TMDB Movies Popularity", labels={"y": "Popularity", "x": "Title"},
             update_trace_text=True, trace_text=None, file_path=self.output_file_path, show=True)
-            self.assertTrue(os.path.isfile(r"{}/tmdb_movies_popularity.png".format(self.output_file_path)), True)
+            # self.assertTrue(os.path.isfile(r"{}/tmdb_movies_popularity.png".format(self.output_file_path)), True)
+            assert os.path.isfile(r"{}/tmdb_movies_popularity.png".format(self.output_file_path)) is True
 
         except Exception as e:
             print('Error: {}'.format(str(e)))
@@ -73,7 +66,8 @@ class TestDB2Viz(TestDataViz):
             update_trace_text=True, trace_text=None, file_path=self.output_file_path,
             save2db=dict(host=self.host_mysql, user=self.user_mysql, password=self.password_mysql, db_type="mysql", db_name="tmdb", tb_name="image"),
             show=True)
-            self.assertTrue(os.path.isfile(r"{}/tmdb_movies_popularity.png".format(self.output_file_path)), True)
+            # self.assertTrue(os.path.isfile(r"{}/tmdb_movies_popularity.png".format(self.output_file_path)), True)
+            assert os.path.isfile(r"{}/tmdb_movies_popularity.png".format(self.output_file_path)) is True
 
         except Exception as e:
             print('Error: {}'.format(str(e)))

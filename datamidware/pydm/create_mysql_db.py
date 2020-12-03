@@ -4,16 +4,17 @@ Date: 30th August 2020
 License: MIT License
 ===================================================================
 Implementation of function create_mysql_db() in Python:
-Creates a new MySQL pydb
+Creates a new MySQL database
 
 param host: host name
 param user: user name
 param password: password
-param db_name: pydb name to be created
+param db_name: database name to be created
 """
 # =================================================================
 from __future__ import print_function
-import pymysql
+import mysql.connector
+from mysql.connector import errorcode
 
 
 def create_mysql_db(host, user, password, db_name):
@@ -23,15 +24,13 @@ def create_mysql_db(host, user, password, db_name):
     :param host: host name
     :param user: user name
     :param password: password
-    :param db_name: pydb name to be created
+    :param db_name: database name to be created
     """
     # Create a connection object
-    connection = pymysql.connect(host=host,
+    connection = mysql.connector.connect(host=host,
                                  user=user,
                                  password=password,
-                                 autocommit=True,
-                                 charset="utf8mb4",
-                                 cursorclass=pymysql.cursors.DictCursor)
+                                 autocommit=True)
 
     print('Connected to DB: {}'.format(host))
 
@@ -46,7 +45,7 @@ def create_mysql_db(host, user, password, db_name):
         # execute the create pydb SQL statement through the cursor instance
         cursor.execute(sql_statement)
 
-        print('Successfully created pydb {}'.format(db_name))
+        print('Successfully created database {}'.format(db_name))
 
         # SQL query string
         sql_query = "SHOW DATABASES"
@@ -57,12 +56,15 @@ def create_mysql_db(host, user, password, db_name):
         # Fetch all the rows
         database_list = cursor.fetchall()
 
-        for db in database_list:
-            print(db)
+        for i in database_list:
+            if i[0] == db_name:
+                print(i[0])
 
-    except Exception as e:
-        print("Failed to connect.")
-        print('Error: {}'.format(str(e)))
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+            print("Something is wrong with user name or password")
+        else:
+            print(err)
 
     finally:
         connection.close()

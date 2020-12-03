@@ -22,8 +22,9 @@ from __future__ import print_function
 import pandas as pd
 import sqlalchemy as db
 from sqlalchemy.orm import sessionmaker
-import pymysql
 from datamidware.pyviz import bar
+import mysql.connector
+from mysql.connector import errorcode
 
 
 def db2viz(host, user, password, db_name, tb_name, db_type=None, kind=None, x=None, y=None,
@@ -210,14 +211,11 @@ def exists_db(host, user, password, db_name):
     :return: True if exists, else return False
     """
     # Create a connection object
-    connection = pymysql.connect(host=host,
+    connection = mysql.connector.connect(host=host,
                                  user=user,
-                                 password=password,
-                                 autocommit=True,
-                                 charset="utf8mb4",
-                                 cursorclass=pymysql.cursors.DictCursor)
+                                 password=password)
 
-    # print('Connected to DB: {}'.format(host))
+    connection.autocommit = True
 
     # Create a cursor object
     cursor = connection.cursor()
@@ -248,15 +246,12 @@ def exists_tb(host, user, password, db_name, tb_name):
     :return: True if exists, else return False
     """
     # Create a connection object
-    connection = pymysql.connect(host=host,
+    connection = mysql.connector.connect(host=host,
                                  user=user,
                                  password=password,
-                                 database=db_name,
-                                 autocommit=True,
-                                 charset="utf8mb4",
-                                 cursorclass=pymysql.cursors.DictCursor)
+                                 database=db_name)
 
-    # print('Connected to DB: {}'.format(host))
+    connection.autocommit = True
 
     # Create a cursor object
     cursor = connection.cursor()
