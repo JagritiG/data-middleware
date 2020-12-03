@@ -12,10 +12,11 @@ from datamidware.pydm import csv2mysql
 def get_csv(url, filepath=None, save2db={}):
     """Access URL and Download csv data from URL and save it to specific location.
     :param url: URL from where csv data is to be downloaded
-    :param filename: file name and path to save csv data
+    :param filepath: file path to save csv data. For e.g., "PATH/", filename will be taken from url
     :param save2db: dictionary; if given csv data is loaded into database.
-           save2db=dict(host="host", user="user", password="password", db_type="db_type", "db_name="db_name", tb_name="tb_name")
-           (db_type: mysql, nosql)
+           save2db=dict(host="host", user="user", password="password", db_type="db_type", "db_name="db_name", tb_name=None)
+           (db_type: mysql, nosql); if tb_name="tb_name" can be given by user. If tb_name=None, then automatically takes
+           the tb_name from url.
     """
     try:
         # send a HTTP request to the server and save
