@@ -4,7 +4,7 @@ Date: 30th August 2020
 License: MIT License
 ===================================================================
 Implementation of function csv2mysql() in Python:
-Imports csv file into mysql pydb
+Imports csv file into mysql db
 
 param host: host name
 param user: user name
@@ -77,7 +77,7 @@ def csv2mysql(host, user, password, filename, db_name, tb_name):
 
 
 # ====================================================================
-# Checks if given pydb and table already exists or not
+# Checks if given db and table already exists or not
 #
 # param host: host name
 # param user: user name
